@@ -4,9 +4,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./Login";
 import Signup from "./Signup";
 import Home from "./Home";
+import Dashboard from "./Dashboard";
 
 function App() {
   const [user, setUser] = useState(null);
+
+  function onLogin(user) {
+    setUser(user);
+  }
 
   if (!user) {
     return (
@@ -28,7 +33,7 @@ function App() {
 
           <Switch>
             <Route path="/login">
-              <Login setUser={setUser} />
+              <Login onLogin={onLogin} />
             </Route>
             <Route path="/signup">
               <Signup />
@@ -41,7 +46,7 @@ function App() {
       </Router>
     );
   } else {
-    return <h2>logged in</h2>;
+    return <Dashboard user={user} setUser={setUser} />;
   }
 }
 
