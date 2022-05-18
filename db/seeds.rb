@@ -1,28 +1,19 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
 # Categories
 puts "Seeding Categories..."
 
-Category.create(name: "Credit")
-Category.create(name: "Debit")
+Category.create(name: "Income")
+Category.create(name: "Expense")
 Category.create(name: "Budget")
 Category.create(name: "Statement")
 
 # Sub-Categories
 puts "seeding Sub_Categories..."
 
-# Credit
+# Income
 SubCategory.create(name: "Paycheck", category_id: "1")
 SubCategory.create(name: "Side-Hustle", category_id: "1")
 
-# Debit
+# Expense
 SubCategory.create(name: "Rent", category_id: "2")
 SubCategory.create(name: "Gas", category_id: "2")
 
@@ -46,6 +37,8 @@ User.create(email: "tim@gmail.com", password: "qwerty", password_confirmation: "
 # Jounal Entries
 puts "seeding Journal_Entries..."
 
-JournalEntry.create(amount: 5, note: "test rent credit", user_id: 1, sub_category_id: 2)
+10.times do
+    JournalEntry.create(amount: rand(1..30), note: "test", user_id: 1, sub_category_id: rand(1..12))
+end
 
 puts "Done!"
