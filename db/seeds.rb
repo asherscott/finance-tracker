@@ -19,12 +19,12 @@ Category.create(name: "Statement")
 puts "seeding Sub_Categories..."
 
 # Credit
-SubCategory.create(name: "Rent", category_id: "1")
-SubCategory.create(name: "Gas", category_id: "1")
+SubCategory.create(name: "Paycheck", category_id: "1")
+SubCategory.create(name: "Side-Hustle", category_id: "1")
 
 # Debit
-SubCategory.create(name: "Paycheck", category_id: "2")
-SubCategory.create(name: "Side-Hustle", category_id: "2")
+SubCategory.create(name: "Rent", category_id: "2")
+SubCategory.create(name: "Gas", category_id: "2")
 
 # Budget
 SubCategory.create(name: "Rent", category_id: "3")
@@ -46,6 +46,6 @@ User.create(email: "tim@gmail.com", password: "qwerty", password_confirmation: "
 # Jounal Entries
 puts "seeding Journal_Entries..."
 
-JournalEntry.create(amount: 5, note: "test rent credit", user_id: 1, sub_category_id: 1)
+JournalEntry.create(amount: 5, note: "test rent credit", user_id: 1, sub_category_id: 2)
 
 puts "Done!"

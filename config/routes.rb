@@ -2,8 +2,12 @@ Rails.application.routes.draw do
   
   resources :journal_entries
   resources :sub_categories
-  resources :categories
+  resources :categories, only: [:index, :show]
   resources :users
+
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+  get "/me", to: "users#show"
 
   
   # Routing logic: fallback requests for React Router.
