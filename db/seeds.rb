@@ -69,8 +69,11 @@ User.create(email: "q@q", password: "q", password_confirmation: "q")
 # Jounal Entries
 puts "seeding Journal_Entries..."
 
-20.times do
-    JournalEntry.create(amount: rand(1..30), note: "test", user_id: rand(1..2), sub_category_id: rand(1..12))
+10.times do
+    JournalEntry.create(amount: rand(1..30), note: "income", user_id: rand(1..2), sub_category_id: rand(1..5))
+    JournalEntry.create(amount: rand(1..30), note: "expense", user_id: rand(1..2), sub_category_id: rand(6..21))
+    JournalEntry.create(amount: rand(1..30), note: "budget", user_id: rand(1..2), sub_category_id: rand(22..37))
+    JournalEntry.create(amount: rand(1..30), note: "statement", user_id: rand(1..2), sub_category_id: rand(38..43))
 end
 
 puts "Done!"

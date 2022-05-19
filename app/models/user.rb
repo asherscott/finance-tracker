@@ -7,10 +7,13 @@ class User < ApplicationRecord
         entries = self.journal_entries
         entries.map do |entry|
             entry.sub_category
-        end.uniq
+        end.uniq.sort
     end
 
-    def journal_entries_short
-        self.journal_entries.pluck(:id, :amount, :note, :created_at)
+    def categories
+        cats = self.sub_categories
+        cats.map do |cat|
+            cat.category
+        end.uniq.sort
     end
 end

@@ -5,7 +5,16 @@ import NetWorth from "./NetWorth";
 import CashFlow from "./CashFlow";
 import Savings from "./Savings";
 
-function Nav({ user }) {
+function Nav({ user, setUser }) {
+  function handleLogout() {
+    fetch("/logout", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => setUser(null));
+  }
+
   return (
     <Router>
       <div>
@@ -25,6 +34,11 @@ function Nav({ user }) {
             </li>
             <li>
               <Link to="/savings">Savings</Link>
+            </li>
+            <li>
+              <a href="/login" onClick={handleLogout}>
+                Logout
+              </a>
             </li>
           </ul>
         </nav>
