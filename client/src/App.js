@@ -5,15 +5,23 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Home from "./Home";
 import Dashboard from "./Dashboard";
+import AccountCreated from "./AccountCreated";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [signup, setSignup] = useState(false);
 
   function onLogin(user) {
     setUser(user);
   }
 
-  if (!user) {
+  function onSignup() {
+    setSignup(true);
+  }
+
+  if (signup) {
+    return <AccountCreated setSignup={setSignup} />;
+  } else if (!user) {
     return (
       <Router>
         <div>
@@ -36,7 +44,7 @@ function App() {
               <Login onLogin={onLogin} />
             </Route>
             <Route path="/signup">
-              <Signup />
+              <Signup onSignup={onSignup} />
             </Route>
             <Route path="/">
               <Home />
