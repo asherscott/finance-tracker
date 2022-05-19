@@ -21,7 +21,9 @@ function App() {
 
   if (signup) {
     return <AccountCreated setSignup={setSignup} />;
-  } else if (!user) {
+  } else if (user) {
+    return <Nav user={user} setUser={setUser} />;
+  } else {
     return (
       <Router>
         <div>
@@ -53,8 +55,6 @@ function App() {
         </div>
       </Router>
     );
-  } else {
-    return <Nav user={user} setUser={setUser} />;
   }
 }
 

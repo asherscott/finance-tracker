@@ -9,4 +9,8 @@ class User < ApplicationRecord
             entry.sub_category
         end.uniq
     end
+
+    def journal_entries_short
+        self.journal_entries.pluck(:id, :amount, :note, :created_at)
+    end
 end
