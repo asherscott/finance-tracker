@@ -1,13 +1,11 @@
 function Dashboard({ user, setUser }) {
-  const config = {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
   function handleLogout() {
-    fetch("/logout", config).then(() => setUser(null));
+    fetch("/logout", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => setUser(null));
   }
 
   return (

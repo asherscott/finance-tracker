@@ -37,7 +37,7 @@ User.create(email: "tim@gmail.com", password: "qwerty", password_confirmation: "
 # Jounal Entries
 puts "seeding Journal_Entries..."
 
-10.times do
+3.times do
     JournalEntry.create(amount: rand(1..30), note: "test", user_id: 1, sub_category_id: rand(1..12))
 end
 

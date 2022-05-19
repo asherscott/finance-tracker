@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./Login";
 import Signup from "./Signup";
 import Home from "./Home";
-import Dashboard from "./Dashboard";
+import Nav from "./Nav";
 import AccountCreated from "./AccountCreated";
 
 function App() {
@@ -54,7 +54,7 @@ function App() {
       </Router>
     );
   } else {
-    return <Dashboard user={user} setUser={setUser} />;
+    return <Nav user={user} setUser={setUser} />;
   }
 }
 
