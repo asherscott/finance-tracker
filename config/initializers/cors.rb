@@ -23,7 +23,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   # end
 
   # allow do
-  #   origins 'https://asher-scott-finance-tracker.herokuapp.com/'
+  #   origins 'https://asher-scott-finance-tracker.herokuapp.com'
 
   #   resource '*',
   #     headers: :any,

@@ -21,7 +21,7 @@ function Signup({ onSignup }) {
   function handleSignup(e) {
     e.preventDefault();
 
-    fetch("http://localhost:3000/users", config).then((r) =>
+    fetch("/users", config).then((r) =>
       r.ok
         ? r.json().then(() => onSignup())
         : r.json().then((error) => setError(error))

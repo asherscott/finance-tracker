@@ -7,7 +7,7 @@ function Dashboard({ user, setUser }) {
   };
 
   function handleLogout() {
-    fetch("http://localhost:3000/logout", config).then(() => setUser(null));
+    fetch("/logout", config).then(() => setUser(null));
   }
 
   return (

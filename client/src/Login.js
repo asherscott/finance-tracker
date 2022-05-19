@@ -16,7 +16,7 @@ function Login({ onLogin }) {
   function handleLogin(e) {
     e.preventDefault();
 
-    fetch("http://localhost:3000/login", config).then((r) =>
+    fetch("/login", config).then((r) =>
       r.ok
         ? r.json().then((user) => onLogin(user))
         : r.json().then((error) => setError(error))
