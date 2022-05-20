@@ -1,3 +1,7 @@
+# to reset the database
+# heroku restart; heroku pg:reset DATABASE --confirm APP-NAME; heroku run rails db:migrate
+# heroku run rails db:seed
+
 # Categories
 puts "Seeding Categories..."
 
