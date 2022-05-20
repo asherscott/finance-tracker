@@ -9,9 +9,7 @@ function Nav({ user, setUser }) {
   function handleLogout() {
     fetch("/logout", {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     }).then(() => setUser(null));
   }
 
