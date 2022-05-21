@@ -17,19 +17,30 @@ function RenderRows({ journalEntries, setJournalEntries, user }) {
     edit === entry.id ? (
       <tr key={entry.id}>
         <td>
-          <select
-            type="dropdown"
-            onChange={(e) => setSubCategory(e.target.value)}
-            name="sub_category"
-          >
-            <option value="none" selected disabled hidden>
-              {entry.sub_category.name}
-            </option>
+          {subCategory !== "+" ? (
+            <select
+              type="dropdown"
+              onChange={(e) => {
+                setSubCategory(e.target.value);
+              }}
+              name="sub_category"
+            >
+              <option value="none" selected disabled hidden>
+                {entry.sub_category.name}
+              </option>
 
-            {renderOptions}
+              {renderOptions}
 
-            <option>+ ...</option>
-          </select>
+              <option>+</option>
+            </select>
+          ) : (
+            <input
+              type="text"
+              onChange={(e) => setSubCategory(e.target.value)}
+              name="subCategory"
+              value={subCategory}
+            />
+          )}
         </td>
         <td>
           <input
@@ -52,13 +63,26 @@ function RenderRows({ journalEntries, setJournalEntries, user }) {
         </td>
       </tr>
     ) : (
-      <tr key={entry.id} onClick={() => handleEdit(entry)}>
-        <td>{entry.sub_category.name}</td>
-        <td>$ {entry.amount}</td>
-        <td>{entry.note}</td>
+      <tr key={entry.id}>
+        <td onClick={() => handleEdit(entry)}>{entry.sub_category.name}</td>
+        <td onClick={() => handleEdit(entry)}>$ {entry.amount}</td>
+        <td onClick={() => handleEdit(entry)}>{entry.note}</td>
+        <td>
+          <button onClick={() => handleDelete(entry.id)}>X</button>
+        </td>
       </tr>
     )
   );
+
+  function handleDelete(id) {
+    fetch("/journal_entries/" + id, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    }).then(() => {
+      //   setEdit(false);
+      setJournalEntries((prev) => [...prev.filter((entry) => entry.id !== id)]);
+    });
+  }
 
   function handleEdit(entry) {
     setEdit(entry.id);
