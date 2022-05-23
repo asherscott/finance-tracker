@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_05_18_135216) do
   create_table "journal_entries", force: :cascade do |t|
     t.integer "amount"
     t.string "note"
+    t.datetime "date"
     t.bigint "user_id", null: false
     t.bigint "sub_category_id", null: false
     t.datetime "created_at", precision: 6, null: false

@@ -74,10 +74,10 @@ User.create(email: "q@q", password: "q", password_confirmation: "q")
 puts "seeding Journal_Entries..."
 
 10.times do
-    JournalEntry.create(amount: rand(1..30), note: "income", user_id: rand(1..2), sub_category_id: rand(1..5))
-    JournalEntry.create(amount: rand(1..30), note: "expense", user_id: rand(1..2), sub_category_id: rand(6..21))
+    JournalEntry.create(amount: rand(1..30), note: "income", user_id: rand(1..2), sub_category_id: rand(1..5), date: Faker::Date.between(from: '2022-04-10', to: '2022-04-25'))
+    JournalEntry.create(amount: rand(1..30), note: "expense", user_id: rand(1..2), sub_category_id: rand(6..21), date: Faker::Date.between(from: '2022-04-10', to: '2022-04-25'))
     JournalEntry.create(amount: rand(1..30), note: "budget", user_id: rand(1..2), sub_category_id: rand(22..37))
-    JournalEntry.create(amount: rand(1..30), note: "statement", user_id: rand(1..2), sub_category_id: rand(38..43))
+    JournalEntry.create(amount: rand(1..30), note: "statement", user_id: rand(1..2), sub_category_id: rand(38..43), date: Faker::Date.between(from: '2022-04-10', to: '2022-04-25'))
 end
 
 puts "Done!"

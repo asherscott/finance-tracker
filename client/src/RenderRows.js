@@ -64,6 +64,7 @@ function RenderRows({ journalEntries, setJournalEntries, user }) {
       </tr>
     ) : (
       <tr key={entry.id}>
+        {entry.date ? <td>{entry.date.slice(0, 10)}</td> : null}
         <td onClick={() => handleEdit(entry)}>{entry.sub_category.name}</td>
         <td onClick={() => handleEdit(entry)}>$ {entry.amount}</td>
         <td onClick={() => handleEdit(entry)}>{entry.note}</td>

@@ -13,6 +13,7 @@ function NetWorth({ user }) {
       <table>
         <thead>
           <tr>
+            <th>Date</th>
             <th>Category</th>
             <th>Amount</th>
             <th>Notes</th>

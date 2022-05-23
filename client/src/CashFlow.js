@@ -3,7 +3,10 @@ import RenderRows from "./RenderRows";
 
 function CashFlow({ user }) {
   const [expenses, setExpenses] = useState(
-    user.journal_entries.filter((entry) => entry.category.name === "Expense")
+    user.journal_entries.filter(
+      (entry) =>
+        entry.category.name === "Expense" || entry.category.name === "Income"
+    )
   );
 
   return (
@@ -13,6 +16,7 @@ function CashFlow({ user }) {
       <table>
         <thead>
           <tr>
+            <th>Date</th>
             <th>Category</th>
             <th>Amount</th>
             <th>Notes</th>
