@@ -4,6 +4,7 @@ import Budget from "./Budget";
 import NetWorth from "./NetWorth";
 import CashFlow from "./CashFlow";
 import Savings from "./Savings";
+import "./Nav.css";
 
 function Nav({ user, setUser }) {
   function handleLogout() {

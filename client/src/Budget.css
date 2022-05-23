@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.budget-wrapper {
+  /* width: 75%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

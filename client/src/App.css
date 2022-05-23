@@ -1,0 +1,16 @@
+:root {
+  --lightgreen: rgb(87, 188, 146);
+  --darkgreen: rgb(0, 84, 71);
+  --blue: rgb(118, 202, 212);
+  --salmon: rgb(255, 68, 149);
+
+  --one: rgb(236, 236, 236);
+  --two: rgb(165, 165, 165);
+  --three: rgb(80, 80, 80);
+  --four: rgb(59, 59, 59);
+  --five: rgb(45, 45, 45);
+}
+
+body {
+  background-color: var(--one);
+}

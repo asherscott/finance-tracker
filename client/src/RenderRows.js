@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function RenderRows({ journalEntries, setJournalEntries, user }) {
+function RenderRows({ journalEntries, setJournalEntries, user, showDropdown }) {
   const [subCategory, setSubCategory] = useState("");
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
   const [edit, setEdit] = useState(null);
   const [newEntry, setNewEntry] = useState(false);
+  const [newCategory, setNewCategory] = useState(false);
+
+  useEffect(() => {
+    setNewCategory(false);
+  }, [edit]);
 
   const subCategories = journalEntries.map((entry) => entry.sub_category.name);
 
@@ -13,15 +18,24 @@ function RenderRows({ journalEntries, setJournalEntries, user }) {
     .filter((category, index) => subCategories.indexOf(category) === index)
     .map((category) => <option key={category}>{category}</option>);
 
+  function showCategoryForm() {
+    setNewCategory(!newCategory);
+    setSubCategory("");
+  }
+
   const renderEntries = journalEntries.map((entry) =>
     edit === entry.id ? (
       <tr key={entry.id}>
         <td>
-          {subCategory !== "+" ? (
+          {!newCategory ? (
             <select
               type="dropdown"
               onChange={(e) => {
                 setSubCategory(e.target.value);
+                if (e.target.value === "new") {
+                  setNewCategory(!newCategory);
+                  setSubCategory("");
+                }
               }}
               name="sub_category"
             >
@@ -29,9 +43,9 @@ function RenderRows({ journalEntries, setJournalEntries, user }) {
                 {entry.sub_category.name}
               </option>
 
-              {renderOptions}
+              <option value="new">New Category</option>
 
-              <option>+</option>
+              {renderOptions}
             </select>
           ) : (
             <input
