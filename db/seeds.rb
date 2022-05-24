@@ -15,7 +15,7 @@ puts "seeding Sub_Categories..."
 
 # Income
 SubCategory.create(name: "Paycheck", category_id: "1")
-SubCategory.create(name: "Hobby Income", category_id: "1")
+SubCategory.create(name: "Side Income", category_id: "1")
 SubCategory.create(name: "Gambling", category_id: "1")
 SubCategory.create(name: "Gifts", category_id: "1")
 SubCategory.create(name: "Other", category_id: "1")

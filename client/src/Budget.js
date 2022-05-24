@@ -46,6 +46,7 @@ function Budget({ user }) {
             journalEntries={budgetEntries}
             setJournalEntries={setBudgetEntries}
             user={user}
+            categoryId={3}
           />
         </table>
       </div>

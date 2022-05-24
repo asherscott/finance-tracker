@@ -24,6 +24,7 @@ function NetWorth({ user }) {
           setJournalEntries={setStatements}
           user={user}
           hasDate={true}
+          categoryId={4}
         />
       </table>
     </div>

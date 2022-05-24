@@ -6,6 +6,7 @@ function RenderRows({
   user,
   hasDate,
   canEdit = true,
+  categoryId,
 }) {
   const [subCategory, setSubCategory] = useState("");
   const [amount, setAmount] = useState("");
@@ -135,7 +136,7 @@ function RenderRows({
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        category_id: 3,
+        category_id: categoryId,
         name: subCategory,
       }),
     };
