@@ -27,6 +27,7 @@ function CashFlow({ user }) {
           setJournalEntries={setExpenses}
           user={user}
           hasDate={true}
+          canEdit={false}
         />
       </table>
     </div>

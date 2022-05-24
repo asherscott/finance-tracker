@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 
-function RenderRows({ journalEntries, setJournalEntries, user, hasDate }) {
+function RenderRows({
+  journalEntries,
+  setJournalEntries,
+  user,
+  hasDate,
+  canEdit = true,
+}) {
   const [subCategory, setSubCategory] = useState("");
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
@@ -84,11 +90,13 @@ function RenderRows({ journalEntries, setJournalEntries, user, hasDate }) {
   }
 
   function renderButton(text, handleClick, params) {
-    return (
-      <td>
-        <button onClick={() => handleClick(params)}>{text}</button>
-      </td>
-    );
+    if (canEdit) {
+      return (
+        <td>
+          <button onClick={() => handleClick(params)}>{text}</button>
+        </td>
+      );
+    }
   }
 
   const renderEntries = journalEntries.map((entry) =>
@@ -209,12 +217,14 @@ function RenderRows({ journalEntries, setJournalEntries, user, hasDate }) {
   }
 
   function handleEdit(entry) {
-    setEdit(entry.id);
-    setSubCategory(entry.sub_category.name);
-    setAmount(entry.amount);
-    setNote(entry.note);
-    if (entry.date) {
-      setDate(entry.date);
+    if (canEdit) {
+      setEdit(entry.id);
+      setSubCategory(entry.sub_category.name);
+      setAmount(entry.amount);
+      setNote(entry.note);
+      if (entry.date) {
+        setDate(entry.date);
+      }
     }
   }
 
@@ -269,15 +279,21 @@ function RenderRows({ journalEntries, setJournalEntries, user, hasDate }) {
     setDate("");
   }
 
+  function addRow() {
+    if (canEdit) {
+      return !newEntry ? (
+        <tr id="newRowButton">{renderButton("+", handleNewRow)}</tr>
+      ) : (
+        renderNewRow()
+      );
+    }
+  }
+
   return (
     <tbody>
       {renderEntries}
 
-      {!newEntry ? (
-        <tr id="newRowButton">{renderButton("+", handleNewRow)}</tr>
-      ) : (
-        renderNewRow()
-      )}
+      {addRow()}
     </tbody>
   );
 }
