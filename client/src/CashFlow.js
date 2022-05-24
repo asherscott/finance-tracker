@@ -19,7 +19,9 @@ function CashFlow({ user }) {
   );
 
   useEffect(() => {
-    setFilterEntries(entries.filter((entry) => entry.category.name === tab));
+    setFilterEntries(
+      entries.filter((entry) => (tab ? entry.category.name === tab : true))
+    );
   }, [entries]);
 
   function handleTab(category) {
