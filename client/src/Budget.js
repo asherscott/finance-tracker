@@ -46,7 +46,6 @@ function Budget({ user }) {
             journalEntries={budgetEntries}
             setJournalEntries={setBudgetEntries}
             user={user}
-            showDropdown={false}
           />
         </table>
       </div>
