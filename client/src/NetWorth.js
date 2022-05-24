@@ -23,6 +23,7 @@ function NetWorth({ user }) {
           journalEntries={statements}
           setJournalEntries={setStatements}
           user={user}
+          hasDate={true}
         />
       </table>
     </div>

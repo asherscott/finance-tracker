@@ -46,6 +46,6 @@ class JournalEntriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def journal_entry_params
-      params.require(:journal_entry).permit(:amount, :note, :user_id, :sub_category_id)
+      params.require(:journal_entry).permit(:amount, :note, :user_id, :sub_category_id, :date)
     end
 end

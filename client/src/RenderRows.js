@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 
-function RenderRows({ journalEntries, setJournalEntries, user }) {
+function RenderRows({ journalEntries, setJournalEntries, user, hasDate }) {
   const [subCategory, setSubCategory] = useState("");
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
+  const [date, setDate] = useState("");
   const [edit, setEdit] = useState(null);
   const [newEntry, setNewEntry] = useState(false);
   const [newCategory, setNewCategory] = useState(false);
 
   useEffect(() => {
+    //   When editing a new category, if selecting a different row => show default category
     setNewCategory(false);
+    //   When editing a new row, if selecting a different row => remove new row
     if (newEntry && edit) {
       setNewEntry(false);
     }
@@ -21,68 +24,100 @@ function RenderRows({ journalEntries, setJournalEntries, user }) {
     .filter((category, index) => subCategories.indexOf(category) === index)
     .map((category) => <option key={category}>{category}</option>);
 
+  function handleOption(e) {
+    setSubCategory(e.target.value);
+    if (e.target.value === "new") {
+      setNewCategory(!newCategory);
+      setSubCategory("");
+    }
+  }
+
+  function renderDate() {
+    if (hasDate) {
+      return (
+        <td>
+          <input
+            type="date"
+            onChange={(e) => setDate(e.target.value)}
+            name="date"
+            value={date}
+          />
+        </td>
+      );
+    }
+  }
+
+  function renderInput(type, value, setValue) {
+    return (
+      <td>
+        <input
+          type={type}
+          onChange={(e) => setValue(e.target.value)}
+          name={value}
+          value={value}
+        />
+      </td>
+    );
+  }
+
+  function renderSelect(entry, selectCat) {
+    return (
+      <select type="dropdown" onChange={handleOption} name="sub_category">
+        <option value="none" selected disabled hidden>
+          {entry ? entry.sub_category.name : selectCat}
+        </option>
+
+        <option value="new">New Category</option>
+
+        {renderOptions}
+      </select>
+    );
+  }
+
+  function renderTableValue(entry, attr1, attr2, prepend) {
+    return (
+      <td onClick={() => handleEdit(entry)}>
+        {prepend ? prepend : null}
+        {attr2 ? entry[attr1][attr2] : entry[attr1]}
+      </td>
+    );
+  }
+
+  function renderButton(text, handleClick, params) {
+    return (
+      <td>
+        <button onClick={() => handleClick(params)}>{text}</button>
+      </td>
+    );
+  }
+
   const renderEntries = journalEntries.map((entry) =>
     edit === entry.id ? (
+      // Displayed when editing a row
       <tr key={entry.id}>
-        <td>
-          {!newCategory || newEntry ? (
-            <select
-              type="dropdown"
-              onChange={(e) => {
-                setSubCategory(e.target.value);
-                if (e.target.value === "new") {
-                  setNewCategory(!newCategory);
-                  setSubCategory("");
-                }
-              }}
-              name="sub_category"
-            >
-              <option value="none" selected disabled hidden>
-                {entry.sub_category.name}
-              </option>
+        {renderDate(entry)}
 
-              <option value="new">New Category</option>
+        <td>
+          {!newCategory || newEntry
+            ? renderSelect(entry)
+            : renderInput("text", subCategory, setSubCategory)}
+        </td>
 
-              {renderOptions}
-            </select>
-          ) : (
-            <input
-              type="text"
-              onChange={(e) => setSubCategory(e.target.value)}
-              name="subCategory"
-              value={subCategory}
-            />
-          )}
-        </td>
-        <td>
-          <input
-            type="number"
-            onChange={(e) => setAmount(e.target.value)}
-            name="amount"
-            value={amount}
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            onChange={(e) => setNote(e.target.value)}
-            name="note"
-            value={note}
-          />
-        </td>
-        <td>
-          <button onClick={() => handleSave(entry.id)}>save</button>
-        </td>
+        {renderInput("number", amount, setAmount)}
+        {renderInput("text", note, setNote)}
+
+        {renderButton("save", handleSave, entry.id)}
       </tr>
     ) : (
+      // Displayed by default, when NOT being edited
       <tr key={entry.id}>
-        {entry.date ? <td>{entry.date.slice(0, 10)}</td> : null}
-        <td onClick={() => handleEdit(entry)}>{entry.sub_category.name}</td>
-        <td onClick={() => handleEdit(entry)}>$ {entry.amount}</td>
-        <td onClick={() => handleEdit(entry)}>{entry.note}</td>
-        <td>
-          <button onClick={() => handleDelete(entry.id)}>X</button>
-        </td>
+        {hasDate ? renderTableValue(entry, "date") : null}
+
+        {renderTableValue(entry, "sub_category", "name")}
+        {renderTableValue(entry, "amount", null, "$")}
+        {renderTableValue(entry, "note")}
+
+        {renderButton("x", handleDelete, entry.id)}
       </tr>
     )
   );
@@ -123,6 +158,7 @@ function RenderRows({ journalEntries, setJournalEntries, user }) {
         sub_category_id: subCategoryId,
         amount,
         note,
+        date,
       }),
     };
 
@@ -149,6 +185,7 @@ function RenderRows({ journalEntries, setJournalEntries, user }) {
         amount,
         note,
         user_id: user.id,
+        date,
       }),
     };
 
@@ -167,7 +204,6 @@ function RenderRows({ journalEntries, setJournalEntries, user }) {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     }).then(() => {
-      //   setEdit(false);
       setJournalEntries((prev) => [...prev.filter((entry) => entry.id !== id)]);
     });
   }
@@ -177,12 +213,16 @@ function RenderRows({ journalEntries, setJournalEntries, user }) {
     setSubCategory(entry.sub_category.name);
     setAmount(entry.amount);
     setNote(entry.note);
+    if (entry.date) {
+      setDate(entry.date);
+    }
   }
 
   function onEdit(update) {
     setSubCategory("");
     setAmount("");
     setNote("");
+    setDate("");
     setEdit(null);
     setJournalEntries((prev) => [
       ...prev.filter((entry) => entry.id !== update.id),
@@ -191,8 +231,8 @@ function RenderRows({ journalEntries, setJournalEntries, user }) {
   }
 
   function handleSave(id) {
-    if (!subCategory) {
-      alert("error: select category");
+    if (!subCategory || (hasDate && !date)) {
+      alert("error: fill inputs");
     } else {
       if (!journalEntries.find((je) => je.sub_category.name === subCategory)) {
         isNewCategory(id);
@@ -202,74 +242,41 @@ function RenderRows({ journalEntries, setJournalEntries, user }) {
     }
   }
 
+  function renderNewRow() {
+    return (
+      <tr>
+        {renderDate()}
+        <td>
+          {!newCategory
+            ? renderSelect(null, "Select Category")
+            : renderInput("text", subCategory, setSubCategory)}
+        </td>
+        {renderInput("number", amount, setAmount)}
+        {renderInput("text", note, setNote)}
+        <td>
+          <button onClick={() => handleSave(null)}>save</button>
+        </td>
+      </tr>
+    );
+  }
+
+  function handleNewRow() {
+    setNewEntry(true);
+    setEdit(null);
+    setSubCategory("");
+    setAmount("");
+    setNote("");
+    setDate("");
+  }
+
   return (
     <tbody>
       {renderEntries}
+
       {!newEntry ? (
-        <tr>
-          <td>
-            <button
-              onClick={() => {
-                setNewEntry(true);
-                setEdit(null);
-              }}
-            >
-              +
-            </button>
-          </td>
-        </tr>
+        <tr id="newRowButton">{renderButton("+", handleNewRow)}</tr>
       ) : (
-        <tr>
-          <td>
-            {!newCategory ? (
-              <select
-                type="dropdown"
-                onChange={(e) => {
-                  setSubCategory(e.target.value);
-                  if (e.target.value === "new") {
-                    setNewCategory(!newCategory);
-                    setSubCategory("");
-                  }
-                }}
-                name="sub_category"
-              >
-                <option value="none" selected disabled hidden>
-                  Select Category
-                </option>
-
-                <option value="new">New Category</option>
-
-                {renderOptions}
-              </select>
-            ) : (
-              <input
-                type="text"
-                onChange={(e) => setSubCategory(e.target.value)}
-                name="subCategory"
-                value={subCategory}
-              />
-            )}
-          </td>
-          <td>
-            <input
-              type="number"
-              onChange={(e) => setAmount(e.target.value)}
-              name="amount"
-              value={amount}
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              onChange={(e) => setNote(e.target.value)}
-              name="note"
-              value={note}
-            />
-          </td>
-          <td>
-            <button onClick={() => handleSave(null)}>save</button>
-          </td>
-        </tr>
+        renderNewRow()
       )}
     </tbody>
   );
