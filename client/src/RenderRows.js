@@ -148,7 +148,7 @@ function RenderRows({
             .then((newCat) =>
               id ? patchEntry(id, newCat.id) : postEntry(newCat.id)
             )
-        : r.json().then((error) => console.log(error))
+        : r.json().then((error) => alert(error.exception))
     );
   }
 
@@ -174,7 +174,7 @@ function RenderRows({
     fetch("/journal_entries/" + id, config).then((r) =>
       r.ok
         ? r.json().then((update) => onEdit(update))
-        : r.json().then((error) => console.log(error))
+        : r.json().then((error) => alert(error.exception))
     );
   }
 
@@ -204,7 +204,7 @@ function RenderRows({
             onEdit(update);
             setNewEntry(false);
           })
-        : r.json().then((error) => console.log(error))
+        : r.json().then((error) => alert(error.exception))
     );
   }
 
