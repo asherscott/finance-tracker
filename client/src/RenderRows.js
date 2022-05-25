@@ -33,7 +33,7 @@ function RenderRows({
 
   function handleOption(e) {
     setSubCategory(e.target.value);
-    if (e.target.value === "new") {
+    if (e.target.value === "NewCategory") {
       setNewCategory(!newCategory);
       setSubCategory("");
     }
@@ -74,7 +74,7 @@ function RenderRows({
           {entry ? entry.sub_category.name : selectCat}
         </option>
 
-        <option value="new">New Category</option>
+        <option value="NewCategory">New Category</option>
 
         {renderOptions}
       </select>
