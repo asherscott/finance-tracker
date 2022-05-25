@@ -7,27 +7,11 @@ function NetWorth({ user }) {
     user.journal_entries.filter((entry) => entry.category.name === "Statement")
   );
 
-  // const data = [
-  //   ["Month", "Net Worth"],
-  //   ["2004/05", 165],
-  //   ["2005/06", 135],
-  //   ["2006/07", 157],
-  //   ["2007/08", 139],
-  //   ["2008/09", 136],
-  // ];
-
-  const options = {
-    isStacked: true,
-    legend: { position: "none" },
-  };
-
   const dates = statements.map((entry) => entry.date.slice(0, 7));
-  // const datesUniq = [...new Set(dates)];
+  const amounts = statements.map((entry) => entry.amount);
 
-  const subCats = statements.map((entry) => entry.amount);
-
-  const data = dates.map((date, i) => [date, subCats[i]]);
-  data.unshift(["Date", "New Worth"]);
+  const data = dates.map((date, i) => [date, amounts[i]]);
+  data.unshift(["Date", "Net Worth"]);
 
   return (
     <div>
@@ -39,7 +23,7 @@ function NetWorth({ user }) {
           width="100%"
           height="400px"
           data={data}
-          options={options}
+          options={{ legend: { position: "none" } }}
         />
       </div>
 

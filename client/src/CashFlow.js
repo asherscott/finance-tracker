@@ -46,6 +46,21 @@ function CashFlow({ user }) {
   ]);
   budgetPieData.unshift(["Category", "Amount"]);
 
+  const dates = filterEntries.map((entry) => entry.date);
+  const amounts = filterEntries.map((entry) =>
+    entry.category.name === "Income" ? entry.amount : -entry.amount
+  );
+  const totalAmounts = [];
+  let runsum = 0;
+
+  for (const num of amounts) {
+    runsum += num;
+    totalAmounts.push(runsum);
+  }
+
+  const areaData = dates.map((date, i) => [date, totalAmounts[i]]);
+  areaData.unshift(["Date", "Cash Flow"]);
+
   return (
     <div>
       <h2 onClick={() => handleTab(null)}>Cash Flow</h2>
@@ -66,7 +81,15 @@ function CashFlow({ user }) {
               pieSliceText: "none",
             }}
           />
-        ) : null}
+        ) : (
+          <Chart
+            chartType="AreaChart"
+            width="100%"
+            height="400px"
+            data={areaData}
+            options={{ legend: { position: "none" } }}
+          />
+        )}
       </div>
 
       <table>
