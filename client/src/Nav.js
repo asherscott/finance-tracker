@@ -31,9 +31,9 @@ function Nav({ user, setUser }) {
             <li>
               <Link to="/cash_flow">Cash Flow</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/savings">Savings</Link>
-            </li>
+            </li> */}
             <li>
               <a href="/login" onClick={handleLogout}>
                 Logout

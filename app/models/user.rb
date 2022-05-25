@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
 
-    has_many :journal_entries
+    has_many :journal_entries, -> {order('date')}
 
     def sub_categories
         entries = self.journal_entries
