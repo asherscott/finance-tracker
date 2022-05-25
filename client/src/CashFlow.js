@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import RenderRows from "./RenderRows";
+import { Chart } from "react-google-charts";
 
 function CashFlow({ user }) {
   const [canEdit, setCanEdit] = useState(false);
@@ -39,11 +40,34 @@ function CashFlow({ user }) {
     }
   }
 
+  const budgetPieData = filterEntries.map((entry) => [
+    entry.sub_category.name,
+    entry.amount,
+  ]);
+  budgetPieData.unshift(["Category", "Amount"]);
+
   return (
     <div>
       <h2 onClick={() => handleTab(null)}>Cash Flow</h2>
       <span onClick={() => handleTab("Income")}>Income</span>
       <span onClick={() => handleTab("Expense")}>Expense</span>
+
+      <div className="chart-wrapper">
+        {tab ? (
+          <Chart
+            chartType="PieChart"
+            width="100%"
+            height="400px"
+            data={budgetPieData}
+            options={{
+              pieHole: 0.7,
+              backgroundColor: "none",
+              //   colors: ["#FB7A21", "#050", "#666"],
+              pieSliceText: "none",
+            }}
+          />
+        ) : null}
+      </div>
 
       <table>
         <thead>
