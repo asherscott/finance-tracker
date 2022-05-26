@@ -70,15 +70,17 @@ function RenderRows({
 
   function renderSelect(entry, selectCat) {
     return (
-      <select type="dropdown" onChange={handleOption} name="sub_category">
-        <option value="none" selected disabled hidden>
-          {entry ? entry.sub_category.name : selectCat}
-        </option>
+      <td>
+        <select type="dropdown" onChange={handleOption} name="sub_category">
+          <option value="none" hidden>
+            {entry ? entry.sub_category.name : selectCat}
+          </option>
 
-        <option value="NewCategory">New Category</option>
+          <option value="NewCategory">New Category</option>
 
-        {renderOptions}
-      </select>
+          {renderOptions}
+        </select>
+      </td>
     );
   }
 
@@ -107,11 +109,9 @@ function RenderRows({
       <tr key={entry.id}>
         {renderDate(entry)}
 
-        <td>
-          {!newCategory || newEntry
-            ? renderSelect(entry)
-            : renderInput("text", subCategory, setSubCategory)}
-        </td>
+        {!newCategory || newEntry
+          ? renderSelect(entry)
+          : renderInput("text", subCategory, setSubCategory)}
 
         {renderInput("number", amount, setAmount)}
         {renderInput("text", note, setNote)}
@@ -263,11 +263,9 @@ function RenderRows({
     return (
       <tr>
         {renderDate()}
-        <td>
-          {!newCategory
-            ? renderSelect(null, "Select Category")
-            : renderInput("text", subCategory, setSubCategory)}
-        </td>
+        {!newCategory
+          ? renderSelect(null, "Select Category")
+          : renderInput("text", subCategory, setSubCategory)}
         {renderInput("number", amount, setAmount)}
         {renderInput("text", note, setNote)}
         <td>
