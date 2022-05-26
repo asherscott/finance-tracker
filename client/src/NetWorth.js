@@ -2,21 +2,19 @@ import { useState } from "react";
 import RenderRows from "./RenderRows";
 import { Chart } from "react-google-charts";
 
-function NetWorth({ user }) {
+function NetWorth({ user, masterList, setMasterList }) {
   const [statements, setStatements] = useState(
-    user.journal_entries.filter((entry) => entry.category.name === "Statement")
+    masterList.filter((entry) => entry.category.name === "Statement")
   );
 
-  const dates = statements.map((entry) => entry.date.slice(0, 7));
-  const amounts = statements.map((entry) => entry.amount);
+  function renderPie() {
+    const dates = statements.map((entry) => entry.date.slice(0, 7));
+    const amounts = statements.map((entry) => entry.amount);
 
-  const data = dates.map((date, i) => [date, amounts[i]]);
-  data.unshift(["Date", "Net Worth"]);
+    const data = dates.map((date, i) => [date, amounts[i]]);
+    data.unshift(["Date", "Net Worth"]);
 
-  return (
-    <div>
-      <h2>Net Worth</h2>
-
+    return (
       <div className="chart-wrapper">
         <Chart
           chartType="AreaChart"
@@ -26,6 +24,14 @@ function NetWorth({ user }) {
           options={{ legend: { position: "none" } }}
         />
       </div>
+    );
+  }
+
+  return (
+    <div>
+      <h2>Net Worth</h2>
+
+      {renderPie()}
 
       <table>
         <thead>
@@ -39,6 +45,7 @@ function NetWorth({ user }) {
         <RenderRows
           journalEntries={statements}
           setJournalEntries={setStatements}
+          setMasterList={setMasterList}
           user={user}
           hasDate={true}
           categoryId={4}

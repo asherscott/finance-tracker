@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 function RenderRows({
   journalEntries,
   setJournalEntries,
+  setMasterList,
   user,
   hasDate,
   canEdit = true,
@@ -214,6 +215,7 @@ function RenderRows({
       headers: { "Content-Type": "application/json" },
     }).then(() => {
       setJournalEntries((prev) => [...prev.filter((entry) => entry.id !== id)]);
+      setMasterList((prev) => [...prev.filter((entry) => entry.id !== id)]);
     });
   }
 
@@ -236,6 +238,10 @@ function RenderRows({
     setDate("");
     setEdit(null);
     setJournalEntries((prev) => [
+      ...prev.filter((entry) => entry.id !== update.id),
+      update,
+    ]);
+    setMasterList((prev) => [
       ...prev.filter((entry) => entry.id !== update.id),
       update,
     ]);

@@ -6,7 +6,7 @@ import CashFlow from "./CashFlow";
 import Savings from "./Savings";
 import "./Nav.css";
 
-function Nav({ user, setUser }) {
+function Nav({ user, setUser, masterList, setMasterList }) {
   function handleLogout() {
     fetch("/logout", {
       method: "DELETE",
@@ -44,19 +44,35 @@ function Nav({ user, setUser }) {
 
         <Switch>
           <Route path="/budget">
-            <Budget user={user} />
+            <Budget
+              user={user}
+              masterList={masterList}
+              setMasterList={setMasterList}
+            />
           </Route>
           <Route path="/net_worth">
-            <NetWorth user={user} />
+            <NetWorth
+              user={user}
+              masterList={masterList}
+              setMasterList={setMasterList}
+            />
           </Route>
           <Route path="/cash_flow">
-            <CashFlow user={user} />
+            <CashFlow
+              user={user}
+              masterList={masterList}
+              setMasterList={setMasterList}
+            />
           </Route>
           <Route path="/savings">
             <Savings user={user} />
           </Route>
           <Route path="/">
-            <Dashboard user={user} />
+            <Dashboard
+              user={user}
+              masterList={masterList}
+              setMasterList={setMasterList}
+            />
           </Route>
         </Switch>
       </div>

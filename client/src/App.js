@@ -9,10 +9,12 @@ import AccountCreated from "./AccountCreated";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [masterList, setMasterList] = useState(null);
   const [signup, setSignup] = useState(false);
 
   function onLogin(user) {
     setUser(user);
+    setMasterList(user.journal_entries);
   }
 
   function onSignup() {
@@ -22,7 +24,14 @@ function App() {
   if (signup) {
     return <AccountCreated setSignup={setSignup} />;
   } else if (user) {
-    return <Nav user={user} setUser={setUser} />;
+    return (
+      <Nav
+        user={user}
+        setUser={setUser}
+        masterList={masterList}
+        setMasterList={setMasterList}
+      />
+    );
   } else {
     return (
       <Router>
