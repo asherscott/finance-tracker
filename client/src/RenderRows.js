@@ -237,14 +237,20 @@ function RenderRows({
     setNote("");
     setDate("");
     setEdit(null);
-    setJournalEntries((prev) => [
-      ...prev.filter((entry) => entry.id !== update.id),
-      update,
-    ]);
-    setMasterList((prev) => [
-      ...prev.filter((entry) => entry.id !== update.id),
-      update,
-    ]);
+    setJournalEntries((prev) =>
+      [...prev.filter((entry) => entry.id !== update.id), update].sort(
+        (a, b) =>
+          new Date(a.date).setHours(0, 0, 0, 0) -
+          new Date(b.date).setHours(0, 0, 0, 0)
+      )
+    );
+    setMasterList((prev) =>
+      [...prev.filter((entry) => entry.id !== update.id), update].sort(
+        (a, b) =>
+          new Date(a.date).setHours(0, 0, 0, 0) -
+          new Date(b.date).setHours(0, 0, 0, 0)
+      )
+    );
   }
 
   function handleSave(id) {
