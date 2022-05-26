@@ -23,7 +23,13 @@ function CashFlow({ user, masterList, setMasterList }) {
       setCanEdit(true);
       setCategoryId(category === "Income" ? 1 : 2);
     } else {
-      setEntries(entries);
+      setEntries(
+        masterList.filter(
+          (entry) =>
+            entry.category.name === "Expense" ||
+            entry.category.name === "Income"
+        )
+      );
       setCanEdit(false);
     }
   }

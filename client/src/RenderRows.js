@@ -264,11 +264,17 @@ function RenderRows({
       alert("error: fill inputs");
     } else {
       if (!chooseCategory) {
-        setSubCategory(
+        if (
           journalEntries.find(
             (entry) => entry.sub_category.name === selectCategory
-          ).sub_category
-        );
+          )
+        ) {
+          setSubCategory(
+            journalEntries.find(
+              (entry) => entry.sub_category.name === selectCategory
+            ).sub_category
+          );
+        }
       }
 
       if (!journalEntries.find((je) => je.sub_category.name === subCategory)) {
