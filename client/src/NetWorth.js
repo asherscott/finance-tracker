@@ -37,8 +37,7 @@ function NetWorth({ user, masterList, setMasterList }) {
         <thead>
           <tr>
             <th>Date</th>
-            <th>Category</th>
-            <th>Amount</th>
+            <th>Net Worth</th>
             <th>Notes</th>
           </tr>
         </thead>
@@ -49,6 +48,8 @@ function NetWorth({ user, masterList, setMasterList }) {
           user={user}
           hasDate={true}
           categoryId={4}
+          chooseCategory={false}
+          selectCategory={"Net Worth"}
         />
       </table>
     </div>

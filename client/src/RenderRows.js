@@ -7,6 +7,8 @@ function RenderRows({
   user,
   hasDate,
   canEdit = true,
+  chooseCategory = true,
+  selectCategory,
   categoryId,
 }) {
   const [subCategory, setSubCategory] = useState("");
@@ -109,9 +111,11 @@ function RenderRows({
       <tr key={entry.id}>
         {renderDate(entry)}
 
-        {!newCategory || newEntry
-          ? renderSelect(entry)
-          : renderInput("text", subCategory, setSubCategory)}
+        {chooseCategory
+          ? !newCategory || newEntry
+            ? renderSelect(entry)
+            : renderInput("text", subCategory, setSubCategory)
+          : null}
 
         {renderInput("number", amount, setAmount)}
         {renderInput("text", note, setNote)}
@@ -123,7 +127,9 @@ function RenderRows({
       <tr key={entry.id}>
         {hasDate ? renderTableValue(entry, "date") : null}
 
-        {renderTableValue(entry, "sub_category", "name")}
+        {chooseCategory
+          ? renderTableValue(entry, "sub_category", "name")
+          : null}
         {renderTableValue(entry, "amount", null, "$")}
         {renderTableValue(entry, "note")}
 
@@ -254,9 +260,17 @@ function RenderRows({
   }
 
   function handleSave(id) {
-    if (!subCategory || (hasDate && !date)) {
+    if ((chooseCategory && !subCategory) || (hasDate && !date)) {
       alert("error: fill inputs");
     } else {
+      if (!chooseCategory) {
+        setSubCategory(
+          journalEntries.find(
+            (entry) => entry.sub_category.name === selectCategory
+          ).sub_category
+        );
+      }
+
       if (!journalEntries.find((je) => je.sub_category.name === subCategory)) {
         isNewCategory(id);
       } else {
@@ -269,9 +283,13 @@ function RenderRows({
     return (
       <tr>
         {renderDate()}
-        {!newCategory
-          ? renderSelect(null, "Select Category")
-          : renderInput("text", subCategory, setSubCategory)}
+
+        {chooseCategory
+          ? !newCategory
+            ? renderSelect(null, "Select Category")
+            : renderInput("text", subCategory, setSubCategory)
+          : null}
+
         {renderInput("number", amount, setAmount)}
         {renderInput("text", note, setNote)}
         <td>
