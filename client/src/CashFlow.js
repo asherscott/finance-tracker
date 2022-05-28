@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import RenderRows from "./RenderRows";
 import { Chart } from "react-google-charts";
 
@@ -48,7 +48,7 @@ function CashFlow({ user, masterList, setMasterList }) {
         height="400px"
         data={budgetPieData}
         options={{
-          pieHole: 0.7,
+          pieHole: 0.6,
           backgroundColor: "none",
           //   colors: ["#FB7A21", "#050", "#666"],
           pieSliceText: "none",
@@ -79,7 +79,7 @@ function CashFlow({ user, masterList, setMasterList }) {
         width="100%"
         height="400px"
         data={areaData}
-        options={{ legend: { position: "none" } }}
+        options={{ legend: { position: "none" }, backgroundColor: "none" }}
       />
     );
   }

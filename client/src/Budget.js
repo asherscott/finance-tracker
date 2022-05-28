@@ -23,7 +23,7 @@ function Budget({ user, masterList, setMasterList }) {
           height="400px"
           data={budgetPieData}
           options={{
-            pieHole: 0.7,
+            pieHole: 0.6,
             backgroundColor: "none",
             //   colors: ["#FB7A21", "#050", "#666"],
             pieSliceText: "none",

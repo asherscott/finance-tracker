@@ -7,7 +7,7 @@ function NetWorth({ user, masterList, setMasterList }) {
     masterList.filter((entry) => entry.category.name === "Statement")
   );
 
-  function renderPie() {
+  function renderArea() {
     const dates = statements.map((entry) => entry.date.slice(0, 7));
     const amounts = statements.map((entry) => entry.amount);
 
@@ -21,7 +21,7 @@ function NetWorth({ user, masterList, setMasterList }) {
           width="100%"
           height="400px"
           data={data}
-          options={{ legend: { position: "none" } }}
+          options={{ legend: { position: "none" }, backgroundColor: "none" }}
         />
       </div>
     );
@@ -31,7 +31,7 @@ function NetWorth({ user, masterList, setMasterList }) {
     <div>
       <h2>Net Worth</h2>
 
-      {renderPie()}
+      {renderArea()}
 
       <table>
         <thead>
