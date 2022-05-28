@@ -244,17 +244,19 @@ function RenderRows({
     setDate("");
     setEdit(null);
     setJournalEntries((prev) =>
-      [...prev.filter((entry) => entry.id !== update.id), update].sort(
-        (a, b) =>
-          new Date(a.date).setHours(0, 0, 0, 0) -
-          new Date(b.date).setHours(0, 0, 0, 0)
+      [...prev.filter((entry) => entry.id !== update.id), update].sort((a, b) =>
+        a.date
+          ? new Date(a.date).setHours(0, 0, 0, 0) -
+            new Date(b.date).setHours(0, 0, 0, 0)
+          : b.amount - a.amount
       )
     );
     setMasterList((prev) =>
-      [...prev.filter((entry) => entry.id !== update.id), update].sort(
-        (a, b) =>
-          new Date(a.date).setHours(0, 0, 0, 0) -
-          new Date(b.date).setHours(0, 0, 0, 0)
+      [...prev.filter((entry) => entry.id !== update.id), update].sort((a, b) =>
+        a.date
+          ? new Date(a.date).setHours(0, 0, 0, 0) -
+            new Date(b.date).setHours(0, 0, 0, 0)
+          : b.amount - a.amount
       )
     );
   }

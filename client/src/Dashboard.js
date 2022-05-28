@@ -116,7 +116,6 @@ function Dashboard({ user, masterList }) {
             legend: { position: "none" },
             title: "Net Worth",
             backgroundColor: "none",
-            hAxis: { ticks: [1, 2, 3] },
           }}
         />
       </div>

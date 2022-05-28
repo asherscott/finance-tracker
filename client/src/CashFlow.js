@@ -93,7 +93,7 @@ function CashFlow({ user, masterList, setMasterList }) {
   }
 
   function renderArea() {
-    const dates = entries.map((entry) => entry.date);
+    const dates = entries.map((entry) => entry.date.slice(5));
     const amounts = entries.map((entry) =>
       entry.category.name === "Income" ? entry.amount : -entry.amount
     );
