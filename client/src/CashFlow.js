@@ -50,7 +50,42 @@ function CashFlow({ user, masterList, setMasterList }) {
         options={{
           pieHole: 0.6,
           backgroundColor: "none",
-          //   colors: ["#FB7A21", "#050", "#666"],
+          colors:
+            entries[0].category.name === "Expense"
+              ? [
+                  "#ff0000",
+                  "#ff2f00",
+                  "#ff4500",
+                  "#ff5700",
+                  "#ff6600",
+                  "#ff7400",
+                  "#ff8200",
+                  "#ff8f00",
+                  "#ff9b00",
+                  "#ffa700",
+                  "#ffb200",
+                  "#ffbd00",
+                  "#ffc900",
+                  "#ffd300",
+                  "#ffde00",
+                ]
+              : [
+                  "#003782",
+                  "#004490",
+                  "#00529e",
+                  "#005faa",
+                  "#006cb6",
+                  "#007ac1",
+                  "#0088cb",
+                  "#0095d4",
+                  "#00a3dd",
+                  "#00b1e4",
+                  "#00bfeb",
+                  "#00cdf1",
+                  "#00daf6",
+                  "#00e8fb",
+                  "#00f6ff",
+                ],
           pieSliceText: "none",
         }}
       />

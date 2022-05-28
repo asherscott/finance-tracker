@@ -68,7 +68,7 @@ function Nav({ user, setUser, masterList, setMasterList }) {
             <Savings user={user} />
           </Route>
           <Route path="/">
-            <Dashboard user={user} />
+            <Dashboard user={user} masterList={masterList} />
           </Route>
         </Switch>
       </div>

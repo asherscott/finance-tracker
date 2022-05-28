@@ -5,7 +5,9 @@ import "./Budget.css";
 
 function Budget({ user, masterList, setMasterList }) {
   const [budgetEntries, setBudgetEntries] = useState(
-    masterList.filter((entry) => entry.category.name === "Budget")
+    masterList
+      .filter((entry) => entry.category.name === "Budget")
+      .sort((a, b) => b.amount - a.amount)
   );
 
   function renderPie() {
@@ -25,7 +27,28 @@ function Budget({ user, masterList, setMasterList }) {
           options={{
             pieHole: 0.6,
             backgroundColor: "none",
-            //   colors: ["#FB7A21", "#050", "#666"],
+            colors: [
+              "#26cd4d",
+              "#00c065",
+              "#00b377",
+              "#00a483",
+              "#00958a",
+              "#00858b",
+              "#007685",
+              "#00667b",
+              "#0f576b",
+              "#2a4858",
+              "#28687d",
+              "#168ba0",
+              "#00b0be",
+              "#00d6d6",
+              "#05fce8",
+              "#00fed9",
+              "#00ffc6",
+              "#00ffb0",
+              "#00ff96",
+              "#00ff78",
+            ],
             pieSliceText: "none",
           }}
         />
