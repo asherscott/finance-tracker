@@ -11,6 +11,18 @@
   align-items: center;
 }
 
+.card-title {
+  position: absolute;
+  transform: translate(30px, 15px);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.card-title:hover {
+  color: var(--one);
+  text-decoration: underline;
+}
+
 .dash-tile {
   background-color: var(--four);
   margin: 0.5rem;
@@ -37,6 +49,8 @@
 .budget-wrapper {
   width: 100%;
   min-width: 400px;
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (max-width: 1600px) {
@@ -59,6 +73,10 @@
   .cashPies-wrapper {
     width: 95vw;
   }
+  .cashPies-title {
+    transform: translate(-130px, 15px);
+  }
+
   .income-wrapper,
   .expense-wrapper {
     display: flex;
@@ -86,4 +104,8 @@
   body {
     overflow-x: hidden;
   }
+}
+
+.budget-title {
+  transform: translate(-150px, 15px);
 }

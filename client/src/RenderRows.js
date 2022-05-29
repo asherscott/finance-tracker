@@ -100,7 +100,12 @@ function RenderRows({
     if (canEdit) {
       return (
         <td>
-          <button onClick={() => handleClick(params)}>{text}</button>
+          <button
+            onClick={() => handleClick(params)}
+            id={text === "save" ? "stay" : ""}
+          >
+            {text}
+          </button>
         </td>
       );
     }

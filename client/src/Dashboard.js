@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Chart } from "react-google-charts";
 import "./Dashboard.css";
+import { Link } from "react-router-dom";
 
 function Dashboard({ user, masterList, setTab }) {
   const [budgetEntries, setBudgetEntries] = useState(
@@ -68,7 +69,6 @@ function Dashboard({ user, masterList, setTab }) {
           height="400px"
           data={budgetPieData}
           options={{
-            title: "Budget",
             pieHole: 0.6,
             backgroundColor: "none",
             colors: [
@@ -117,7 +117,6 @@ function Dashboard({ user, masterList, setTab }) {
           data={data}
           options={{
             legend: { position: "none" },
-            title: "Net Worth",
             backgroundColor: "none",
             colors: ["#00B0AE"],
 
@@ -152,7 +151,6 @@ function Dashboard({ user, masterList, setTab }) {
           height="200px"
           data={budgetPieData}
           options={{
-            title: entries[0].category.name,
             pieHole: 0.6,
             backgroundColor: "none",
             colors:
@@ -225,7 +223,6 @@ function Dashboard({ user, masterList, setTab }) {
           data={areaData}
           options={{
             legend: { position: "none" },
-            title: "Cash Flow",
             backgroundColor: "none",
             colors: ["#0095d4"],
             vAxis: {
@@ -252,22 +249,42 @@ function Dashboard({ user, masterList, setTab }) {
       <div className="dash-container">
         {/* <h2>Hello, {user.email.split("@", 1)}</h2> */}
 
-        <div className="NW-wrapper dash-tile">{renderNW()}</div>
+        <div className="NW-wrapper dash-tile">
+          <Link to="/net_worth" className="card-title">
+            Net Worth
+          </Link>
+
+          {renderNW()}
+        </div>
 
         <div className="pies-wrapper">
-          <div className="budget-wrapper dash-tile">{renderBudget()}</div>
+          <div className="budget-wrapper dash-tile">
+            <Link to="/budget" className="card-title budget-title">
+              Budget
+            </Link>
+            {renderBudget()}
+          </div>
 
           <div className="cashflow-wrapper">
             <div className="cashPies-wrapper">
               <div className="income-wrapper dash-tile">
+                <Link to="/cash_flow" className="card-title cashPies-title">
+                  Income
+                </Link>
                 {renderCashFlow(income)}
               </div>
               <div className="expense-wrapper dash-tile">
+                <Link to="/ecash_flow" className="card-title cashPies-title">
+                  Expense
+                </Link>
                 {renderCashFlow(expense)}
               </div>
             </div>
 
             <div className="cashflow-area-wrapper dash-tile">
+              <Link to="/cash_flow" className="card-title">
+                Cash Flow
+              </Link>
               {renderCFArea()}
             </div>
           </div>

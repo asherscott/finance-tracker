@@ -11,6 +11,11 @@
   --four: rgb(6, 18, 25);
 }
 
+* {
+  color: var(--twoo);
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--three);
 }

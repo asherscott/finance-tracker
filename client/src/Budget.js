@@ -23,8 +23,8 @@ function Budget({ user, masterList, setMasterList, setTab }) {
       <div className="chart-wrapper">
         <Chart
           chartType="PieChart"
-          width="100%"
-          height="400px"
+          width="800px"
+          height="800px"
           data={budgetPieData}
           options={{
             pieHole: 0.6,
@@ -52,6 +52,7 @@ function Budget({ user, masterList, setMasterList, setTab }) {
               "#00ff78",
             ],
             pieSliceText: "none",
+            legend: { position: "none" },
           }}
         />
       </div>
@@ -60,28 +61,24 @@ function Budget({ user, masterList, setMasterList, setTab }) {
 
   return (
     <div className="wrapper">
-      <div className="wrapper budget-wrapper">
-        <h2>Budget</h2>
+      <div className="budget-wrapper dash-tile budget-pie">{renderPie()}</div>
 
-        {renderPie()}
-
-        <table>
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Amount</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <RenderRows
-            journalEntries={budgetEntries}
-            setJournalEntries={setBudgetEntries}
-            setMasterList={setMasterList}
-            user={user}
-            categoryId={3}
-          />
-        </table>
-      </div>
+      <table>
+        <thead>
+          <tr className="head-row">
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <RenderRows
+          journalEntries={budgetEntries}
+          setJournalEntries={setBudgetEntries}
+          setMasterList={setMasterList}
+          user={user}
+          categoryId={3}
+        />
+      </table>
     </div>
   );
 }
