@@ -21,6 +21,15 @@ a:hover {
 li {
   padding: 1rem;
   margin: 1rem 0;
+  border-bottom: 3px solid rgb(0, 0, 0, 0);
+}
+
+.selected {
+  border-color: var(--salmon);
+}
+
+.selected > a {
+  color: var(--one);
 }
 
 nav {

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Chart } from "react-google-charts";
 import "./Dashboard.css";
 
-function Dashboard({ user, masterList }) {
+function Dashboard({ user, masterList, setTab }) {
   const [budgetEntries, setBudgetEntries] = useState(
     user.journal_entries
       .filter((entry) => entry.category.name === "Budget")
@@ -26,6 +26,8 @@ function Dashboard({ user, masterList }) {
         entry.category.name === "Expense" || entry.category.name === "Income"
     )
   );
+
+  setTab(1);
 
   useEffect(() => {
     if (masterList) {
@@ -236,7 +238,7 @@ function Dashboard({ user, masterList }) {
               gridlineColor: "none",
               // textPosition: "none",
               textStyle: {
-                color: "fff",
+                color: "rgb(161, 176, 182)",
                 fontSize: 14,
               },
             },

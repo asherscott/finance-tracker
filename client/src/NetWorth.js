@@ -2,10 +2,12 @@ import { useState } from "react";
 import RenderRows from "./RenderRows";
 import { Chart } from "react-google-charts";
 
-function NetWorth({ user, masterList, setMasterList }) {
+function NetWorth({ user, masterList, setMasterList, setTab }) {
   const [statements, setStatements] = useState(
     masterList.filter((entry) => entry.category.name === "Statement")
   );
+
+  setTab(3);
 
   function renderArea() {
     const dates = statements.map((entry) => entry.date.slice(0, 7));

@@ -2,10 +2,10 @@ import { useState } from "react";
 import RenderRows from "./RenderRows";
 import { Chart } from "react-google-charts";
 
-function CashFlow({ user, masterList, setMasterList }) {
+function CashFlow({ user, masterList, setMasterList, setTab }) {
   const [canEdit, setCanEdit] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
-  const [tab, setTab] = useState(null);
+  const [subTab, setSubTab] = useState(null);
   const [entries, setEntries] = useState(
     masterList.filter(
       (entry) =>
@@ -13,8 +13,10 @@ function CashFlow({ user, masterList, setMasterList }) {
     )
   );
 
+  setTab(4);
+
   function handleTab(category) {
-    setTab(category);
+    setSubTab(category);
 
     if (category) {
       setEntries(
@@ -125,7 +127,7 @@ function CashFlow({ user, masterList, setMasterList }) {
       <span onClick={() => handleTab("Income")}>Income</span>
       <span onClick={() => handleTab("Expense")}>Expense</span>
 
-      <div className="chart-wrapper">{tab ? renderPie() : renderArea()}</div>
+      <div className="chart-wrapper">{subTab ? renderPie() : renderArea()}</div>
 
       <table>
         <thead>

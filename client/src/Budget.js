@@ -3,12 +3,14 @@ import RenderRows from "./RenderRows";
 import { Chart } from "react-google-charts";
 import "./Budget.css";
 
-function Budget({ user, masterList, setMasterList }) {
+function Budget({ user, masterList, setMasterList, setTab }) {
   const [budgetEntries, setBudgetEntries] = useState(
     masterList
       .filter((entry) => entry.category.name === "Budget")
       .sort((a, b) => b.amount - a.amount)
   );
+
+  setTab(2);
 
   function renderPie() {
     const budgetPieData = budgetEntries.map((entry) => [

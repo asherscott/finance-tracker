@@ -5,8 +5,11 @@ import NetWorth from "./NetWorth";
 import CashFlow from "./CashFlow";
 import Savings from "./Savings";
 import "./Nav.css";
+import { useState } from "react";
 
 function Nav({ user, setUser, masterList, setMasterList }) {
+  const [tab, setTab] = useState(1);
+
   function handleLogout() {
     fetch("/logout", {
       method: "DELETE",
@@ -19,16 +22,16 @@ function Nav({ user, setUser, masterList, setMasterList }) {
       <div>
         <nav>
           <ul>
-            <li>
+            <li className={tab === 1 ? "selected" : ""}>
               <Link to="/dashboard">Dashboard</Link>
             </li>
-            <li>
+            <li className={tab === 2 ? "selected" : ""}>
               <Link to="/budget">Budget</Link>
             </li>
-            <li>
+            <li className={tab === 3 ? "selected" : ""}>
               <Link to="/net_worth">Net Worth</Link>
             </li>
-            <li>
+            <li className={tab === 4 ? "selected" : ""}>
               <Link to="/cash_flow">Cash Flow</Link>
             </li>
             {/* <li>
@@ -48,6 +51,7 @@ function Nav({ user, setUser, masterList, setMasterList }) {
               user={user}
               masterList={masterList}
               setMasterList={setMasterList}
+              setTab={setTab}
             />
           </Route>
           <Route path="/net_worth">
@@ -55,6 +59,7 @@ function Nav({ user, setUser, masterList, setMasterList }) {
               user={user}
               masterList={masterList}
               setMasterList={setMasterList}
+              setTab={setTab}
             />
           </Route>
           <Route path="/cash_flow">
@@ -62,13 +67,14 @@ function Nav({ user, setUser, masterList, setMasterList }) {
               user={user}
               masterList={masterList}
               setMasterList={setMasterList}
+              setTab={setTab}
             />
           </Route>
           <Route path="/savings">
             <Savings user={user} />
           </Route>
           <Route path="/">
-            <Dashboard user={user} masterList={masterList} />
+            <Dashboard user={user} masterList={masterList} setTab={setTab} />
           </Route>
         </Switch>
       </div>
