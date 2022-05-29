@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./RenderRows.css";
 
 function RenderRows({
   journalEntries,

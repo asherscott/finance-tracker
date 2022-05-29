@@ -1,0 +1,89 @@
+.cashPies-wrapper,
+.pies-wrapper,
+.dash-wrapper,
+.cashflow-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.cashflow-wrapper {
+  flex-direction: column;
+  align-items: center;
+}
+
+.dash-tile {
+  background-color: var(--four);
+  margin: 0.5rem;
+  border-radius: 10px;
+}
+
+.NW-wrapper {
+  margin-top: 1rem;
+}
+
+.cashflow-area-wrapper {
+  width: 816px;
+}
+
+.budget-wrapper,
+.cashflow-area-wrapper {
+  margin-bottom: 1rem;
+}
+
+.dash-container {
+  width: 80%;
+}
+
+.budget-wrapper {
+  width: 100%;
+  min-width: 400px;
+}
+
+@media screen and (max-width: 1600px) {
+  .dash-container {
+    min-width: min-content;
+  }
+}
+
+@media screen and (max-width: 1301px) {
+  .pies-wrapper {
+    display: block;
+    margin-top: 1rem;
+  }
+  .budget-wrapper,
+  .NW-wrapper,
+  .cashflow-area-wrapper {
+    width: 95vw;
+  }
+
+  .cashPies-wrapper {
+    width: 95vw;
+  }
+  .income-wrapper,
+  .expense-wrapper {
+    display: flex;
+    justify-content: center;
+    flex: 0 1 100%;
+    min-width: 200px;
+    margin: 0.5rem 0;
+  }
+  .income-wrapper {
+    margin-right: 0.5rem;
+  }
+  .expense-wrapper {
+    margin-left: 0.5rem;
+  }
+
+  .dash-container {
+    overflow-x: hidden;
+  }
+
+  .budget-wrapper,
+  .cashflow-area-wrapper {
+    margin: 0.5rem;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}

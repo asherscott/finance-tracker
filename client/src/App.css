@@ -5,12 +5,12 @@
   --salmon: rgb(255, 68, 149);
 
   --one: rgb(236, 236, 236);
-  --two: rgb(165, 165, 165);
-  --three: rgb(80, 80, 80);
-  --four: rgb(59, 59, 59);
-  --five: rgb(45, 45, 45);
+  --twoo: rgb(161, 176, 182);
+  --two: rgb(93, 111, 119);
+  --three: rgb(10, 30, 41);
+  --four: rgb(6, 18, 25);
 }
 
 body {
-  background-color: var(--one);
+  background-color: var(--three);
 }

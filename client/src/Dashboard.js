@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Chart } from "react-google-charts";
+import "./Dashboard.css";
 
 function Dashboard({ user, masterList }) {
   const [budgetEntries, setBudgetEntries] = useState(
@@ -110,12 +111,24 @@ function Dashboard({ user, masterList }) {
         <Chart
           chartType="AreaChart"
           width="100%"
-          height="400px"
+          height="350px"
           data={data}
           options={{
             legend: { position: "none" },
             title: "Net Worth",
             backgroundColor: "none",
+            colors: ["#00B0AE"],
+
+            vAxis: {
+              baselineColor: "none",
+              gridlineColor: "none",
+              textPosition: "none",
+            },
+            hAxis: {
+              baselineColor: "none",
+              gridlineColor: "none",
+              textPosition: "none",
+            },
           }}
         />
       </div>
@@ -130,61 +143,63 @@ function Dashboard({ user, masterList }) {
     budgetPieData.unshift(["Category", "Amount"]);
 
     return (
-      <Chart
-        chartType="PieChart"
-        width="100%"
-        height="400px"
-        data={budgetPieData}
-        options={{
-          title: entries[0].category.name,
-          pieHole: 0.6,
-          backgroundColor: "none",
-          colors:
-            entries[0].category.name === "Expense"
-              ? [
-                  "#ff0000",
-                  "#ff2f00",
-                  "#ff4500",
-                  "#ff5700",
-                  "#ff6600",
-                  "#ff7400",
-                  "#ff8200",
-                  "#ff8f00",
-                  "#ff9b00",
-                  "#ffa700",
-                  "#ffb200",
-                  "#ffbd00",
-                  "#ffc900",
-                  "#ffd300",
-                  "#ffde00",
-                ]
-              : [
-                  "#003782",
-                  "#004490",
-                  "#00529e",
-                  "#005faa",
-                  "#006cb6",
-                  "#007ac1",
-                  "#0088cb",
-                  "#0095d4",
-                  "#00a3dd",
-                  "#00b1e4",
-                  "#00bfeb",
-                  "#00cdf1",
-                  "#00daf6",
-                  "#00e8fb",
-                  "#00f6ff",
-                ],
-          pieSliceText: "none",
-          // isStacked: true,
-          legend: { position: "none" },
-        }}
-      />
+      <div className="chart-wrapper">
+        <Chart
+          chartType="PieChart"
+          width="100%"
+          height="200px"
+          data={budgetPieData}
+          options={{
+            title: entries[0].category.name,
+            pieHole: 0.6,
+            backgroundColor: "none",
+            colors:
+              entries[0].category.name === "Expense"
+                ? [
+                    "#ff0000",
+                    "#ff2f00",
+                    "#ff4500",
+                    "#ff5700",
+                    "#ff6600",
+                    "#ff7400",
+                    "#ff8200",
+                    "#ff8f00",
+                    "#ff9b00",
+                    "#ffa700",
+                    "#ffb200",
+                    "#ffbd00",
+                    "#ffc900",
+                    "#ffd300",
+                    "#ffde00",
+                  ]
+                : [
+                    "#003782",
+                    "#004490",
+                    "#00529e",
+                    "#005faa",
+                    "#006cb6",
+                    "#007ac1",
+                    "#0088cb",
+                    "#0095d4",
+                    "#00a3dd",
+                    "#00b1e4",
+                    "#00bfeb",
+                    "#00cdf1",
+                    "#00daf6",
+                    "#00e8fb",
+                    "#00f6ff",
+                  ],
+            pieSliceText: "none",
+            // isStacked: true,
+            legend: { position: "none" },
+          }}
+        />
+      </div>
     );
   }
 
   function renderCFArea() {
-    const dates = entries.map((entry) => entry.date.slice(5));
+    const dates = entries.map((entry) => entry.date.slice(8));
     const amounts = entries.map((entry) =>
       entry.category.name === "Income" ? entry.amount : -entry.amount
     );
@@ -200,28 +215,62 @@ function Dashboard({ user, masterList }) {
     areaData.unshift(["Date", "Cash Flow"]);
 
     return (
-      <Chart
-        chartType="AreaChart"
-        width="100%"
-        height="400px"
-        data={areaData}
-        options={{
-          legend: { position: "none" },
-          title: "Cash Flow",
-          backgroundColor: "none",
-        }}
-      />
+      <div className="chart-wrapper">
+        <Chart
+          chartType="AreaChart"
+          width="100%"
+          height="200px"
+          data={areaData}
+          options={{
+            legend: { position: "none" },
+            title: "Cash Flow",
+            backgroundColor: "none",
+            colors: ["#0095d4"],
+            vAxis: {
+              baselineColor: "none",
+              gridlineColor: "none",
+              textPosition: "none",
+            },
+            hAxis: {
+              baselineColor: "none",
+              gridlineColor: "none",
+              // textPosition: "none",
+              textStyle: {
+                color: "fff",
+                fontSize: 14,
+              },
+            },
+          }}
+        />
+      </div>
     );
   }
   return (
-    <div>
-      <h2>Hello, {user.email.split("@", 1)}</h2>
+    <div className="dash-wrapper">
+      <div className="dash-container">
+        {/* <h2>Hello, {user.email.split("@", 1)}</h2> */}
 
-      {renderNW()}
-      {renderBudget()}
-      {renderCashFlow(income)}
-      {renderCashFlow(expense)}
-      {renderCFArea()}
+        <div className="NW-wrapper dash-tile">{renderNW()}</div>
+
+        <div className="pies-wrapper">
+          <div className="budget-wrapper dash-tile">{renderBudget()}</div>
+
+          <div className="cashflow-wrapper">
+            <div className="cashPies-wrapper">
+              <div className="income-wrapper dash-tile">
+                {renderCashFlow(income)}
+              </div>
+              <div className="expense-wrapper dash-tile">
+                {renderCashFlow(expense)}
+              </div>
+            </div>
+
+            <div className="cashflow-area-wrapper dash-tile">
+              {renderCFArea()}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

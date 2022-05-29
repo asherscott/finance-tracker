@@ -1,27 +1,30 @@
 ul {
   list-style: none;
-  /* border: 3px solid black; */
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: space-around;
-  /* background-color: rgb(0, 84, 71); */
-  width: 75%;
+  width: 80%;
 }
 
 a {
   text-decoration: none;
-  color: var(--darkgreen);
-  /* font-weight: 400; */
+  color: var(--twoo);
   font-size: 16pt;
+}
+
+a:hover {
+  cursor: pointer;
+  color: var(--one);
 }
 
 li {
   padding: 1rem;
+  margin: 1rem 0;
 }
 
 nav {
   display: flex;
   justify-content: center;
-  background-color: white;
+  background-color: var(--four);
 }
