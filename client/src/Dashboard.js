@@ -4,29 +4,14 @@ import "./Dashboard.css";
 import { Link } from "react-router-dom";
 
 function Dashboard({ user, masterList, setTab }) {
-  const [budgetEntries, setBudgetEntries] = useState(
-    user.journal_entries
-      .filter((entry) => entry.category.name === "Budget")
-      .sort((a, b) => b.amount - a.amount)
-  );
-  const [statements, setStatements] = useState(
-    user.journal_entries.filter((entry) => entry.category.name === "Statement")
-  );
+  const [budgetEntries, setBudgetEntries] = useState([]);
+  const [statements, setStatements] = useState([]);
 
-  const [income, setIncome] = useState(
-    user.journal_entries.filter((entry) => entry.category.name === "Income")
-  );
+  const [income, setIncome] = useState([]);
 
-  const [expense, setExpense] = useState(
-    user.journal_entries.filter((entry) => entry.category.name === "Expense")
-  );
+  const [expense, setExpense] = useState([]);
 
-  const [entries, setEntries] = useState(
-    user.journal_entries.filter(
-      (entry) =>
-        entry.category.name === "Expense" || entry.category.name === "Income"
-    )
-  );
+  const [entries, setEntries] = useState([]);
 
   setTab(1);
 
@@ -153,8 +138,8 @@ function Dashboard({ user, masterList, setTab }) {
           options={{
             pieHole: 0.6,
             backgroundColor: "none",
-            colors:
-              entries[0].category.name === "Expense"
+            colors: entries[0]
+              ? entries[0].category.name === "Expense"
                 ? [
                     "#ff0000",
                     "#ff2f00",
@@ -188,7 +173,8 @@ function Dashboard({ user, masterList, setTab }) {
                     "#00daf6",
                     "#00e8fb",
                     "#00f6ff",
-                  ],
+                  ]
+              : [],
             pieSliceText: "none",
             // isStacked: true,
             legend: { position: "none" },

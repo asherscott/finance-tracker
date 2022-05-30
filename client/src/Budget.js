@@ -20,11 +20,11 @@ function Budget({ user, masterList, setMasterList, setTab }) {
     budgetPieData.unshift(["Category", "Amount"]);
 
     return (
-      <div className="chart-wrapper">
+      <div className="chart-wrapper budget-chart">
         <Chart
           chartType="PieChart"
-          width="800px"
-          height="800px"
+          width="50vw"
+          height="85vh"
           data={budgetPieData}
           options={{
             pieHole: 0.6,

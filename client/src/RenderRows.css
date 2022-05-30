@@ -2,53 +2,48 @@ table {
   background-color: var(--four);
   margin: 1rem;
   border-radius: 10px;
-  width: 900px;
+  /* width: 800px; */
   border-collapse: collapse;
-  /* height: auto; */
 }
 
 td {
   border-top: 1px solid rgb(0, 0, 0, 0);
   padding: 0;
+  text-align: center;
 }
 
-td:nth-child(4),
 td:last-child {
   border: none;
-  position: absolute;
   cursor: pointer;
 }
 
-td:nth-child(4) {
-  transform: translateX(-30px);
-  display: none;
-}
-
-tr:nth-child(even) {
+/* tr:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.2);
-}
+} */
 
 .head-row {
-  background-color: rgba(0, 0, 0, 0.2);
   cursor: auto;
 }
 
 tr:hover td {
   color: var(--one);
   cursor: pointer;
-}
-
-tr:hover td:nth-child(4) {
-  color: var(--one);
-  cursor: pointer;
-  display: block;
+  background-color: rgb(17, 49, 67, 0.3);
 }
 
 button {
   cursor: pointer;
+  color: #000;
 }
 
-#stay {
-  display: block;
-  transform: translateX(-30px);
+select,
+input,
+p,
+.btn-wrapper {
+  width: 10vw;
+  min-width: 100px;
+}
+
+p {
+  margin: 0 1rem;
 }

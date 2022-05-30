@@ -90,8 +90,10 @@ function RenderRows({
   function renderTableValue(entry, attr1, attr2, prepend) {
     return (
       <td onClick={() => handleEdit(entry)}>
-        {prepend ? prepend : null}
-        {attr2 ? entry[attr1][attr2] : entry[attr1]}
+        <p>
+          {prepend ? prepend : null}
+          {attr2 ? entry[attr1][attr2] : entry[attr1]}
+        </p>
       </td>
     );
   }
@@ -100,12 +102,9 @@ function RenderRows({
     if (canEdit) {
       return (
         <td>
-          <button
-            onClick={() => handleClick(params)}
-            id={text === "save" ? "stay" : ""}
-          >
-            {text}
-          </button>
+          <div className="btn-wrapper">
+            <button onClick={() => handleClick(params)}>{text}</button>
+          </div>
         </td>
       );
     }
@@ -137,6 +136,7 @@ function RenderRows({
           ? renderTableValue(entry, "sub_category", "name")
           : null}
         {renderTableValue(entry, "amount", null, "$")}
+
         {renderTableValue(entry, "note")}
 
         {renderButton("x", handleDelete, entry.id)}

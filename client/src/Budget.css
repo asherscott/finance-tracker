@@ -8,4 +8,26 @@
   margin-right: 0;
   max-width: 800px;
   position: sticky;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1000px) {
+  .wrapper {
+    flex-direction: column;
+  }
+  .budget-pie {
+    width: auto;
+    height: 45vh;
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+    margin-bottom: 0;
+    max-width: none;
+  }
+
+  .budget-chart {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
