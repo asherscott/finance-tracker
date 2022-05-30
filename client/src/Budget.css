@@ -3,32 +3,45 @@
   justify-content: center;
 }
 
+.budget-wrapper2 {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  min-width: none;
+}
+
 .budget-pie {
   margin: 1rem;
   margin-right: 0;
-  max-width: 800px;
+  width: 100%;
   position: sticky;
   overflow: hidden;
+  min-width: 400px;
 }
 
-@media screen and (max-width: 1000px) {
-  .wrapper {
+div.budget-chart {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 950px) {
+  .budget-wrapper2 {
     flex-direction: column;
+    width: 100%;
   }
   .budget-pie {
     width: auto;
     height: 45vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: 1rem;
     margin-bottom: 0;
     max-width: none;
   }
-
   div.budget-chart {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 400px;
   }
 }
