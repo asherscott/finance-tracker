@@ -61,7 +61,7 @@ function Budget({ user, masterList, setMasterList, setTab }) {
 
   return (
     <div className="wrapper">
-      <div className="budget-wrapper dash-tile budget-pie">{renderPie()}</div>
+      <div className="dash-tile budget-pie">{renderPie()}</div>
 
       <table>
         <thead>

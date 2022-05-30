@@ -25,9 +25,10 @@
     max-width: none;
   }
 
-  .budget-chart {
+  div.budget-chart {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 }

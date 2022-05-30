@@ -28,20 +28,16 @@ function NetWorth({ user, masterList, setMasterList, setTab }) {
             legend: { position: "none" },
             backgroundColor: "none",
             colors: ["#00B0AE"],
-
             vAxis: {
-              // baselineColor: "none",
               gridlineColor: "none",
-              // textPosition: "none",
               textStyle: {
                 color: "rgb(161, 176, 182)",
                 fontSize: 14,
               },
             },
             hAxis: {
-              // baselineColor: "none",
-              // gridlineColor: "none",
-              // textPosition: "none",
+              slantedText: true,
+              slantedTextAngle: 30,
               textStyle: {
                 color: "rgb(161, 176, 182)",
                 fontSize: 14,
@@ -55,28 +51,30 @@ function NetWorth({ user, masterList, setMasterList, setTab }) {
 
   return (
     <div className="wrapper">
-      <div className="dash-tile budget-pie">{renderArea()}</div>
+      <div className="net-worth-wrapper wrapper">
+        <div className="dash-tile NW-area">{renderArea()}</div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Net Worth</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <RenderRows
-          journalEntries={statements}
-          setJournalEntries={setStatements}
-          setMasterList={setMasterList}
-          user={user}
-          hasDate={true}
-          categoryId={4}
-          chooseCategory={false}
-          selectCategory={"Net Worth"}
-          fullDate={false}
-        />
-      </table>
+        <table className="big">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Net Worth</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <RenderRows
+            journalEntries={statements}
+            setJournalEntries={setStatements}
+            setMasterList={setMasterList}
+            user={user}
+            hasDate={true}
+            categoryId={4}
+            chooseCategory={false}
+            selectCategory={"Net Worth"}
+            fullDate={false}
+          />
+        </table>
+      </div>
     </div>
   );
 }

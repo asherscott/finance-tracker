@@ -1,0 +1,28 @@
+.net-worth-wrapper {
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.NW-area {
+  margin: 1rem;
+  width: 80%;
+}
+
+.big {
+  width: 80%;
+  margin-top: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  .NW-area,
+  .big {
+    width: 80%;
+    min-width: 580px;
+  }
+}
+
+.chart-wrapper {
+  display: flex;
+  justify-content: center;
+}

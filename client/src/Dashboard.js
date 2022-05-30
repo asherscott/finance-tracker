@@ -215,8 +215,8 @@ function Dashboard({ user, masterList, setTab }) {
             backgroundColor: "none",
             colors: ["#0095d4"],
             vAxis: {
-              baselineColor: "none",
-              ticks: [0],
+              textPosition: "none",
+              gridlineColor: "none",
               textStyle: {
                 color: "rgb(161, 176, 182)",
                 fontSize: 12,
