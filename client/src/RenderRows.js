@@ -11,6 +11,7 @@ function RenderRows({
   chooseCategory = true,
   selectCategory,
   categoryId,
+  fullDate = true,
 }) {
   const [subCategory, setSubCategory] = useState("");
   const [amount, setAmount] = useState("");
@@ -130,7 +131,15 @@ function RenderRows({
     ) : (
       // Displayed by default, when NOT being edited
       <tr key={entry.id}>
-        {hasDate ? renderTableValue(entry, "date") : null}
+        {hasDate ? (
+          fullDate ? (
+            renderTableValue(entry, "date")
+          ) : (
+            <td onClick={() => handleEdit(entry)}>
+              <p>{entry.date.slice(0, 7)}</p>
+            </td>
+          )
+        ) : null}
 
         {chooseCategory
           ? renderTableValue(entry, "sub_category", "name")

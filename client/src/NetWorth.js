@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RenderRows from "./RenderRows";
 import { Chart } from "react-google-charts";
+import "./NetWorth.css";
 
 function NetWorth({ user, masterList, setMasterList, setTab }) {
   const [statements, setStatements] = useState(
@@ -23,17 +24,38 @@ function NetWorth({ user, masterList, setMasterList, setTab }) {
           width="100%"
           height="400px"
           data={data}
-          options={{ legend: { position: "none" }, backgroundColor: "none" }}
+          options={{
+            legend: { position: "none" },
+            backgroundColor: "none",
+            colors: ["#00B0AE"],
+
+            vAxis: {
+              // baselineColor: "none",
+              gridlineColor: "none",
+              // textPosition: "none",
+              textStyle: {
+                color: "rgb(161, 176, 182)",
+                fontSize: 14,
+              },
+            },
+            hAxis: {
+              // baselineColor: "none",
+              // gridlineColor: "none",
+              // textPosition: "none",
+              textStyle: {
+                color: "rgb(161, 176, 182)",
+                fontSize: 14,
+              },
+            },
+          }}
         />
       </div>
     );
   }
 
   return (
-    <div>
-      <h2>Net Worth</h2>
-
-      {renderArea()}
+    <div className="wrapper">
+      <div className="dash-tile budget-pie">{renderArea()}</div>
 
       <table>
         <thead>
@@ -52,6 +74,7 @@ function NetWorth({ user, masterList, setMasterList, setTab }) {
           categoryId={4}
           chooseCategory={false}
           selectCategory={"Net Worth"}
+          fullDate={false}
         />
       </table>
     </div>

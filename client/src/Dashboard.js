@@ -6,11 +6,8 @@ import { Link } from "react-router-dom";
 function Dashboard({ user, masterList, setTab }) {
   const [budgetEntries, setBudgetEntries] = useState([]);
   const [statements, setStatements] = useState([]);
-
   const [income, setIncome] = useState([]);
-
   const [expense, setExpense] = useState([]);
-
   const [entries, setEntries] = useState([]);
 
   setTab(1);
@@ -106,14 +103,20 @@ function Dashboard({ user, masterList, setTab }) {
             colors: ["#00B0AE"],
 
             vAxis: {
-              baselineColor: "none",
               gridlineColor: "none",
+              ticks: [0],
               textPosition: "none",
+              textStyle: {
+                color: "rgb(161, 176, 182)",
+                fontSize: 14,
+              },
             },
             hAxis: {
-              baselineColor: "none",
-              gridlineColor: "none",
               textPosition: "none",
+              textStyle: {
+                color: "rgb(161, 176, 182)",
+                fontSize: 14,
+              },
             },
           }}
         />
@@ -213,16 +216,19 @@ function Dashboard({ user, masterList, setTab }) {
             colors: ["#0095d4"],
             vAxis: {
               baselineColor: "none",
-              gridlineColor: "none",
-              textPosition: "none",
+              ticks: [0],
+              textStyle: {
+                color: "rgb(161, 176, 182)",
+                fontSize: 12,
+              },
             },
+
             hAxis: {
               baselineColor: "none",
               gridlineColor: "none",
-              // textPosition: "none",
               textStyle: {
                 color: "rgb(161, 176, 182)",
-                fontSize: 14,
+                fontSize: 12,
               },
             },
           }}
