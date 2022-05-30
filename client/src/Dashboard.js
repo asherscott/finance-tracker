@@ -179,7 +179,6 @@ function Dashboard({ user, masterList, setTab }) {
                   ]
               : [],
             pieSliceText: "none",
-            // isStacked: true,
             legend: { position: "none" },
           }}
         />

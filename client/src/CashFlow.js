@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RenderRows from "./RenderRows";
 import { Chart } from "react-google-charts";
+import "./CashFlow.css";
 
 function CashFlow({ user, masterList, setMasterList, setTab }) {
   const [canEdit, setCanEdit] = useState(false);
@@ -44,58 +45,62 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
     budgetPieData.unshift(["Category", "Amount"]);
 
     return (
-      <Chart
-        chartType="PieChart"
-        width="100%"
-        height="400px"
-        data={budgetPieData}
-        options={{
-          pieHole: 0.6,
-          backgroundColor: "none",
-          colors:
-            entries[0].category.name === "Expense"
-              ? [
-                  "#ff0000",
-                  "#ff2f00",
-                  "#ff4500",
-                  "#ff5700",
-                  "#ff6600",
-                  "#ff7400",
-                  "#ff8200",
-                  "#ff8f00",
-                  "#ff9b00",
-                  "#ffa700",
-                  "#ffb200",
-                  "#ffbd00",
-                  "#ffc900",
-                  "#ffd300",
-                  "#ffde00",
-                ]
-              : [
-                  "#003782",
-                  "#004490",
-                  "#00529e",
-                  "#005faa",
-                  "#006cb6",
-                  "#007ac1",
-                  "#0088cb",
-                  "#0095d4",
-                  "#00a3dd",
-                  "#00b1e4",
-                  "#00bfeb",
-                  "#00cdf1",
-                  "#00daf6",
-                  "#00e8fb",
-                  "#00f6ff",
-                ],
-          pieSliceText: "none",
-        }}
-      />
+      <div className="chart-wrapper">
+        <Chart
+          chartType="PieChart"
+          width="100%"
+          height="85vh"
+          data={budgetPieData}
+          options={{
+            pieHole: 0.6,
+            backgroundColor: "none",
+            colors: entries[0]
+              ? entries[0].category.name === "Expense"
+                ? [
+                    "#ff0000",
+                    "#ff2f00",
+                    "#ff4500",
+                    "#ff5700",
+                    "#ff6600",
+                    "#ff7400",
+                    "#ff8200",
+                    "#ff8f00",
+                    "#ff9b00",
+                    "#ffa700",
+                    "#ffb200",
+                    "#ffbd00",
+                    "#ffc900",
+                    "#ffd300",
+                    "#ffde00",
+                  ]
+                : [
+                    "#003782",
+                    "#004490",
+                    "#00529e",
+                    "#005faa",
+                    "#006cb6",
+                    "#007ac1",
+                    "#0088cb",
+                    "#0095d4",
+                    "#00a3dd",
+                    "#00b1e4",
+                    "#00bfeb",
+                    "#00cdf1",
+                    "#00daf6",
+                    "#00e8fb",
+                    "#00f6ff",
+                  ]
+              : [],
+            pieSliceText: "none",
+            legend: { position: "none" },
+          }}
+        />
+      </div>
     );
   }
 
   function renderArea() {
-    const dates = entries.map((entry) => entry.date.slice(5));
+    const dates = entries.map((entry) => entry.date.slice(8));
     const amounts = entries.map((entry) =>
       entry.category.name === "Income" ? entry.amount : -entry.amount
     );
@@ -111,43 +116,80 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
     areaData.unshift(["Date", "Cash Flow"]);
 
     return (
-      <Chart
-        chartType="AreaChart"
-        width="100%"
-        height="400px"
-        data={areaData}
-        options={{ legend: { position: "none" }, backgroundColor: "none" }}
-      />
+      <div className="chart-wrapper">
+        <Chart
+          chartType="AreaChart"
+          width="100%"
+          height="400px"
+          data={areaData}
+          options={{
+            legend: { position: "none" },
+            backgroundColor: "none",
+            colors: ["#0095d4"],
+            vAxis: {
+              textPosition: "none",
+              gridlineColor: "none",
+              textStyle: {
+                color: "rgb(161, 176, 182)",
+                fontSize: 12,
+              },
+            },
+
+            hAxis: {
+              baselineColor: "none",
+              gridlineColor: "none",
+              textStyle: {
+                color: "rgb(161, 176, 182)",
+                fontSize: 12,
+              },
+            },
+          }}
+        />
+      </div>
     );
   }
 
   return (
-    <div>
-      <h2 onClick={() => handleTab(null)}>Cash Flow</h2>
-      <span onClick={() => handleTab("Income")}>Income</span>
-      <span onClick={() => handleTab("Expense")}>Expense</span>
+    <div className="wrapper">
+      <div className="net-worth-wrapper wrapper">
+        <nav>
+          <h2 onClick={() => handleTab(null)}>Cash Flow</h2>
+          <span onClick={() => handleTab("Income")}>Income</span>
+          <span onClick={() => handleTab("Expense")}>Expense</span>
+        </nav>
 
-      <div className="chart-wrapper">{subTab ? renderPie() : renderArea()}</div>
+        <div
+          className={
+            subTab ? "budget-wrapper2 wrapper" : "net-worth-wrapper wrapper"
+          }
+        >
+          {subTab ? (
+            <div className="dash-tile budget-pie">{renderPie()}</div>
+          ) : (
+            <div className="dash-tile NW-area">{renderArea()}</div>
+          )}
 
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Amount</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <RenderRows
-          journalEntries={entries}
-          setJournalEntries={setEntries}
-          setMasterList={setMasterList}
-          user={user}
-          hasDate={true}
-          canEdit={canEdit}
-          categoryId={categoryId}
-        />
-      </table>
+          <table className={subTab ? "" : "big"}>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <RenderRows
+              journalEntries={entries}
+              setJournalEntries={setEntries}
+              setMasterList={setMasterList}
+              user={user}
+              hasDate={true}
+              canEdit={canEdit}
+              categoryId={categoryId}
+            />
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
