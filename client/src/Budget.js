@@ -27,7 +27,7 @@ function Budget({ user, masterList, setMasterList, setTab }) {
         <Chart
           chartType="PieChart"
           width="100%"
-          height="85vh"
+          height="45vh"
           data={budgetPieData}
           options={{
             pieHole: 0.6,
@@ -63,27 +63,25 @@ function Budget({ user, masterList, setMasterList, setTab }) {
   }
 
   return (
-    <div className="wrapper">
-      <div className="budget-wrapper2">
-        <div className="dash-tile budget-pie">{renderPie()}</div>
+    <div className="net-worth-wrapper wrapper">
+      <div className="dash-tile NW-area chart-wrapper">{renderPie()}</div>
 
-        <table>
-          <thead>
-            <tr className="head-row">
-              <th>Category</th>
-              <th>Amount</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <RenderRows
-            journalEntries={budgetEntries}
-            setJournalEntries={setBudgetEntries}
-            setMasterList={setMasterList}
-            user={user}
-            categoryId={3}
-          />
-        </table>
-      </div>
+      <table className="big">
+        <thead>
+          <tr className="head-row">
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <RenderRows
+          journalEntries={budgetEntries}
+          setJournalEntries={setBudgetEntries}
+          setMasterList={setMasterList}
+          user={user}
+          categoryId={3}
+        />
+      </table>
     </div>
   );
 }

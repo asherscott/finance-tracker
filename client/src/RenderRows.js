@@ -73,6 +73,7 @@ function RenderRows({
             onChange={(e) => setValue(e.target.value)}
             name={value}
             value={value}
+            placeholder="Enter value"
           />
         </div>
       </td>

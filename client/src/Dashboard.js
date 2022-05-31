@@ -112,7 +112,7 @@ function Dashboard({ user, masterList, setTab }) {
 
             vAxis: {
               gridlineColor: "none",
-              ticks: [0],
+              // ticks: [0],
               textPosition: "none",
               textStyle: {
                 color: "rgb(161, 176, 182)",
