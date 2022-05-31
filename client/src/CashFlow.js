@@ -170,15 +170,26 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
       <div className="net-worth-wrapper wrapper">
         <nav className="cashflow-nav">
           <div className="sub-nav">
-            <h2 onClick={() => handleTab(null)}>Cash Flow</h2>
+            <span
+              onClick={() => handleTab(null)}
+              className={subTab === null ? "sub-select" : ""}
+            >
+              Cash Flow
+            </span>
           </div>
           <div className="sub-nav">
-            <h2 className="tab" onClick={() => handleTab("Income")}>
+            <span
+              className={subTab === "Income" ? "sub-select tab" : "tab"}
+              onClick={() => handleTab("Income")}
+            >
               Income
-            </h2>
-            <h2 className="tab" onClick={() => handleTab("Expense")}>
+            </span>
+            <span
+              className={subTab === "Expense" ? "sub-select tab" : "tab"}
+              onClick={() => handleTab("Expense")}
+            >
               Expense
-            </h2>
+            </span>
           </div>
         </nav>
 

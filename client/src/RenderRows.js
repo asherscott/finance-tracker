@@ -341,8 +341,8 @@ function RenderRows({
         {renderInput("number", amount, setAmount)}
         {renderInput("text", note, setNote)}
         <td>
-          <div className="save">
-            <button className="" onClick={() => handleSave(null)}>
+          <div className="save btn-wrapper">
+            <button className="column-btn" onClick={() => handleSave(null)}>
               =
             </button>
           </div>
