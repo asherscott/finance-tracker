@@ -200,6 +200,7 @@ function Dashboard({ user, masterList, setTab }) {
     }
 
     const areaData = dates.map((date, i) => [date, totalAmounts[i]]);
+    areaData.unshift(["-", 0]);
     areaData.unshift(["Date", "Cash Flow"]);
 
     return (

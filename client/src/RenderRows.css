@@ -36,14 +36,11 @@ button {
   color: #000;
 }
 
-select,
-input,
+.select,
+.input,
 p,
 .btn-wrapper {
   width: 10vw;
   min-width: 100px;
-}
-
-p {
-  margin: 0 1rem;
+  margin: 0 auto;
 }

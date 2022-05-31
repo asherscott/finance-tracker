@@ -21,17 +21,32 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
 
     if (category) {
       setEntries(
-        masterList.filter((entry) => entry.category.name === category)
+        masterList
+          .filter((entry) => entry.category.name === category)
+          .sort((a, b) =>
+            a.date
+              ? new Date(a.date).setHours(0, 0, 0, 0) -
+                new Date(b.date).setHours(0, 0, 0, 0)
+              : b.amount - a.amount
+          )
       );
+
       setCanEdit(true);
       setCategoryId(category === "Income" ? 1 : 2);
     } else {
       setEntries(
-        masterList.filter(
-          (entry) =>
-            entry.category.name === "Expense" ||
-            entry.category.name === "Income"
-        )
+        masterList
+          .filter(
+            (entry) =>
+              entry.category.name === "Expense" ||
+              entry.category.name === "Income"
+          )
+          .sort((a, b) =>
+            a.date
+              ? new Date(a.date).setHours(0, 0, 0, 0) -
+                new Date(b.date).setHours(0, 0, 0, 0)
+              : b.amount - a.amount
+          )
       );
       setCanEdit(false);
     }
@@ -45,7 +60,7 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
     budgetPieData.unshift(["Category", "Amount"]);
 
     return (
-      <div className="chart-wrapper">
+      <div className="chart-wrapper budget-chart">
         <Chart
           chartType="PieChart"
           width="100%"
@@ -113,6 +128,7 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
     }
 
     const areaData = dates.map((date, i) => [date, totalAmounts[i]]);
+    areaData.unshift(["-", 0]);
     areaData.unshift(["Date", "Cash Flow"]);
 
     return (
@@ -127,7 +143,7 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
             backgroundColor: "none",
             colors: ["#0095d4"],
             vAxis: {
-              textPosition: "none",
+              // textPosition: "none",
               gridlineColor: "none",
               textStyle: {
                 color: "rgb(161, 176, 182)",

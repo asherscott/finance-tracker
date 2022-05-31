@@ -62,12 +62,14 @@ function RenderRows({
   function renderInput(type, value, setValue) {
     return (
       <td>
-        <input
-          type={type}
-          onChange={(e) => setValue(e.target.value)}
-          name={value}
-          value={value}
-        />
+        <div className="input">
+          <input
+            type={type}
+            onChange={(e) => setValue(e.target.value)}
+            name={value}
+            value={value}
+          />
+        </div>
       </td>
     );
   }
@@ -75,15 +77,17 @@ function RenderRows({
   function renderSelect(entry, selectCat) {
     return (
       <td>
-        <select type="dropdown" onChange={handleOption} name="sub_category">
-          <option value="none" hidden>
-            {entry ? entry.sub_category.name : selectCat}
-          </option>
+        <div className="select">
+          <select type="dropdown" onChange={handleOption} name="sub_category">
+            <option value="none" hidden>
+              {entry ? entry.sub_category.name : selectCat}
+            </option>
 
-          <option value="NewCategory">New Category</option>
+            <option value="NewCategory">New Category</option>
 
-          {renderOptions}
-        </select>
+            {renderOptions}
+          </select>
+        </div>
       </td>
     );
   }
