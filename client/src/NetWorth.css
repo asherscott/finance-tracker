@@ -14,16 +14,24 @@
   margin-top: 0;
 }
 
+.chart-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nw-title {
+  transform: translate(0, -11rem);
+  display: flex;
+  justify-content: flex-start;
+  width: 80%;
+  min-width: 580px;
+}
+
 @media screen and (max-width: 1000px) {
   .NW-area,
   .big {
     width: 80%;
     min-width: 580px;
   }
-}
-
-.chart-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

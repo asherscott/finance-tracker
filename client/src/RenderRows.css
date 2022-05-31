@@ -44,7 +44,8 @@ button {
   background-color: rgb(0, 0, 0, 0);
 }
 
-tr:hover .column-btn {
+tr:hover .column-btn,
+tr:hover .new-btn {
   cursor: pointer;
   color: var(--salmon);
   background-color: var(--four);
@@ -53,7 +54,8 @@ tr:hover .column-btn {
   font-size: 12pt;
 }
 
-tr:hover .column-btn:hover {
+tr:hover .column-btn:hover,
+tr:hover .new-btn:hover {
   background-color: var(--salmon);
   color: var(--one);
   transition: 0.3s;

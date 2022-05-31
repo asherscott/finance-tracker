@@ -27,22 +27,22 @@ div.budget-chart {
   align-items: center;
 }
 
-@media screen and (max-width: 950px) {
-  .budget-wrapper2 {
-    flex-direction: column;
-    width: 100%;
-  }
-  .budget-pie {
-    width: auto;
-    height: 45vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem;
-    margin-bottom: 0;
-    max-width: none;
-  }
-  div.budget-chart {
-    width: 400px;
-  }
+/* @media screen and (max-width: 2000px) { */
+.budget-wrapper2 {
+  flex-direction: column;
+  width: 100%;
 }
+.budget-pie {
+  width: auto;
+  height: 45vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  margin-bottom: 0;
+  max-width: none;
+}
+div.budget-chart {
+  width: 400px;
+}
+/* } */

@@ -21,6 +21,9 @@ function Budget({ user, masterList, setMasterList, setTab }) {
 
     return (
       <div className="chart-wrapper budget-chart">
+        <span className="amount">
+          ${budgetEntries.reduce((total, num) => total + num.amount, 0)}
+        </span>
         <Chart
           chartType="PieChart"
           width="100%"

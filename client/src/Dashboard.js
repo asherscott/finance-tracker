@@ -45,6 +45,9 @@ function Dashboard({ user, masterList, setTab }) {
 
     return (
       <div className="chart-wrapper">
+        <span className="amount">
+          ${budgetEntries.reduce((total, num) => total + num.amount, 0)}
+        </span>
         <Chart
           chartType="PieChart"
           width="100%"
@@ -81,6 +84,11 @@ function Dashboard({ user, masterList, setTab }) {
         />
       </div>
     );
+  }
+
+  function nwTotal() {
+    const amounts = statements.map((entry) => entry.amount);
+    return amounts.slice(-1)[0];
   }
 
   function renderNW() {
@@ -133,6 +141,9 @@ function Dashboard({ user, masterList, setTab }) {
 
     return (
       <div className="chart-wrapper">
+        <span className="amount">
+          ${entries.reduce((total, num) => total + num.amount, 0)}
+        </span>
         <Chart
           chartType="PieChart"
           width="100%"
@@ -186,6 +197,21 @@ function Dashboard({ user, masterList, setTab }) {
     );
   }
 
+  function cfTotal() {
+    const amounts = entries.map((entry) =>
+      entry.category.name === "Income" ? entry.amount : -entry.amount
+    );
+    const totalAmounts = [];
+    let runsum = 0;
+
+    for (const num of amounts) {
+      runsum += num;
+      totalAmounts.push(runsum);
+    }
+
+    return runsum;
+  }
+
   function renderCFArea() {
     const dates = entries.map((entry) => entry.date.slice(8));
     const amounts = entries.map((entry) =>
@@ -236,37 +262,50 @@ function Dashboard({ user, masterList, setTab }) {
       </div>
     );
   }
+
   return (
     <div className="dash-wrapper">
       <div className="dash-container">
         {/* <h2>Hello, {user.email.split("@", 1)}</h2> */}
 
         <div className="NW-wrapper dash-tile">
-          <Link to="/net_worth" className="card-title">
-            Net Worth
-          </Link>
+          <div className="card-title">
+            <div className="title-hover">
+              <Link to="/net_worth">Net Worth</Link>
+            </div>
+            <span className="num">${nwTotal()}</span>
+          </div>
 
           {renderNW()}
         </div>
 
         <div className="pies-wrapper">
           <div className="budget-wrapper dash-tile">
-            <Link to="/budget" className="card-title budget-title">
+            <Link to="/budget" className="card-title budget-title title-hover">
               Budget
             </Link>
+
             {renderBudget()}
           </div>
 
           <div className="cashflow-wrapper">
             <div className="cashPies-wrapper">
               <div className="income-wrapper dash-tile">
-                <Link to="/cash_flow" className="card-title cashPies-title">
+                <Link
+                  to="/cash_flow"
+                  className="card-title cashPies-title title-hover"
+                >
                   Income
                 </Link>
+
                 {renderCashFlow(income)}
               </div>
+
               <div className="expense-wrapper dash-tile">
-                <Link to="/ecash_flow" className="card-title cashPies-title">
+                <Link
+                  to="/ecash_flow"
+                  className="card-title cashPies-title title-hover"
+                >
                   Expense
                 </Link>
                 {renderCashFlow(expense)}
@@ -274,9 +313,13 @@ function Dashboard({ user, masterList, setTab }) {
             </div>
 
             <div className="cashflow-area-wrapper dash-tile">
-              <Link to="/cash_flow" className="card-title">
-                Cash Flow
-              </Link>
+              <div className="card-title">
+                <div className="title-hover">
+                  <Link to="/cash_flow">Cash Flow</Link>
+                </div>
+                <span className="num">${cfTotal()}</span>
+              </div>
+
               {renderCFArea()}
             </div>
           </div>

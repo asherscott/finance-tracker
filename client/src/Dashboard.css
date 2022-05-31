@@ -13,12 +13,26 @@
 
 .card-title {
   position: absolute;
-  transform: translate(30px, 15px);
   cursor: pointer;
   z-index: 1;
 }
 
-.card-title:hover {
+.card-title {
+  transform: translate(30px, 15px);
+  display: flex;
+}
+
+.num {
+  padding: 0;
+  padding-left: 1rem;
+  cursor: auto;
+}
+
+.num:hover {
+  color: var(--twoo);
+}
+
+.title-hover:hover {
   color: var(--one);
   text-decoration: underline;
 }
@@ -53,6 +67,12 @@
   justify-content: center;
 }
 
+.center-budget {
+  position: absolute;
+  transform: translateY(10.9rem);
+  z-index: 1;
+}
+
 @media screen and (max-width: 1600px) {
   .dash-container {
     min-width: min-content;
@@ -69,14 +89,12 @@
   .cashflow-area-wrapper {
     width: 95vw;
   }
-
   .cashPies-wrapper {
     width: 95vw;
   }
   .cashPies-title {
     transform: translate(-100px, 15px);
   }
-
   .income-wrapper,
   .expense-wrapper {
     display: flex;
@@ -91,21 +109,25 @@
   .expense-wrapper {
     margin-left: 0.5rem;
   }
-
   .dash-container {
     overflow-x: hidden;
   }
-
   .budget-wrapper,
   .cashflow-area-wrapper {
     margin: 0.5rem;
   }
-
   body {
     overflow-x: hidden;
+  }
+  .center-budget {
+    transform: translateY(10.5rem);
   }
 }
 
 .budget-title {
   transform: translate(-150px, 15px);
+}
+
+.amount {
+  position: absolute;
 }

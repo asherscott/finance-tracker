@@ -61,10 +61,13 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
 
     return (
       <div className="chart-wrapper budget-chart">
+        <span className="amount">
+          ${entries.reduce((total, num) => total + num.amount, 0)}
+        </span>
         <Chart
           chartType="PieChart"
           width="100%"
-          height="85vh"
+          height="50vh"
           data={budgetPieData}
           options={{
             pieHole: 0.6,
@@ -165,6 +168,21 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
     );
   }
 
+  function cfTotal() {
+    const amounts = entries.map((entry) =>
+      entry.category.name === "Income" ? entry.amount : -entry.amount
+    );
+    const totalAmounts = [];
+    let runsum = 0;
+
+    for (const num of amounts) {
+      runsum += num;
+      totalAmounts.push(runsum);
+    }
+
+    return runsum;
+  }
+
   return (
     <div className="wrapper">
       <div className="net-worth-wrapper wrapper">
@@ -176,6 +194,7 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
             >
               Cash Flow
             </span>
+            {subTab ? null : <span className="num">${cfTotal()}</span>}
           </div>
           <div className="sub-nav">
             <span
@@ -195,7 +214,7 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
 
         <div className="net-worth-wrapper wrapper">
           {subTab ? (
-            <div className="dash-tile NW-area">{renderPie()}</div>
+            <div className="dash-tile NW-area chart-wrapper">{renderPie()}</div>
           ) : (
             <div className="dash-tile NW-area">{renderArea()}</div>
           )}

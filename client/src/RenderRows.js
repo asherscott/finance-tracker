@@ -125,7 +125,7 @@ function RenderRows({
             }
           >
             <button
-              className={text === "+" ? "" : "column-btn"}
+              className={text === "+" ? "new-btn" : "column-btn"}
               onClick={() => handleClick(params)}
             >
               {text}

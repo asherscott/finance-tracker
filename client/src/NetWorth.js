@@ -10,6 +10,11 @@ function NetWorth({ user, masterList, setMasterList, setTab }) {
 
   setTab(3);
 
+  function nwTotal() {
+    const amounts = statements.map((entry) => entry.amount);
+    return amounts.slice(-1)[0];
+  }
+
   function renderArea() {
     const dates = statements.map((entry) => entry.date.slice(0, 7));
     const amounts = statements.map((entry) => entry.amount);
@@ -19,6 +24,10 @@ function NetWorth({ user, masterList, setMasterList, setTab }) {
 
     return (
       <div className="chart-wrapper">
+        <div className="card-title nw-title">
+          <span className="num">Net Worth</span>
+          <span className="num">${nwTotal()}</span>
+        </div>
         <Chart
           chartType="AreaChart"
           width="100%"
