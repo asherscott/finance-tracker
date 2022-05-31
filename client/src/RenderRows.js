@@ -12,6 +12,7 @@ function RenderRows({
   selectCategory,
   categoryId,
   fullDate = true,
+  subTab,
 }) {
   const [subCategory, setSubCategory] = useState("");
   const [amount, setAmount] = useState("");
@@ -29,6 +30,10 @@ function RenderRows({
       setNewEntry(false);
     }
   }, [edit, newEntry]);
+
+  useEffect(() => {
+    setEdit(null);
+  }, [subTab]);
 
   const subCategories = journalEntries.map((entry) => entry.sub_category.name);
 

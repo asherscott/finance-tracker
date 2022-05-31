@@ -1,0 +1,38 @@
+.cashflow-nav {
+  width: 76%;
+  height: 50px;
+  border-radius: 0 0 10px 10px;
+  background-color: rgb(0, 0, 0, 0);
+  min-width: 580px;
+  position: absolute;
+  top: 6.5rem;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+@media screen and (max-width: 760px) {
+  .cashflow-nav {
+    top: 9rem;
+  }
+}
+
+h2 {
+  display: inline;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+h2:hover {
+  color: var(--one);
+}
+
+.sub-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab {
+  font-size: 14pt;
+}

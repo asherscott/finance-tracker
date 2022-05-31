@@ -168,24 +168,28 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
   return (
     <div className="wrapper">
       <div className="net-worth-wrapper wrapper">
-        <nav>
-          <h2 onClick={() => handleTab(null)}>Cash Flow</h2>
-          <span onClick={() => handleTab("Income")}>Income</span>
-          <span onClick={() => handleTab("Expense")}>Expense</span>
+        <nav className="cashflow-nav">
+          <div className="sub-nav">
+            <h2 onClick={() => handleTab(null)}>Cash Flow</h2>
+          </div>
+          <div className="sub-nav">
+            <h2 className="tab" onClick={() => handleTab("Income")}>
+              Income
+            </h2>
+            <h2 className="tab" onClick={() => handleTab("Expense")}>
+              Expense
+            </h2>
+          </div>
         </nav>
 
-        <div
-          className={
-            subTab ? "budget-wrapper2 wrapper" : "net-worth-wrapper wrapper"
-          }
-        >
+        <div className="net-worth-wrapper wrapper">
           {subTab ? (
-            <div className="dash-tile budget-pie">{renderPie()}</div>
+            <div className="dash-tile NW-area">{renderPie()}</div>
           ) : (
             <div className="dash-tile NW-area">{renderArea()}</div>
           )}
 
-          <table className={subTab ? "" : "big"}>
+          <table className="big">
             <thead>
               <tr>
                 <th>Date</th>
@@ -202,6 +206,7 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
               hasDate={true}
               canEdit={canEdit}
               categoryId={categoryId}
+              subTab={subTab}
             />
           </table>
         </div>
