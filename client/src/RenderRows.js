@@ -94,7 +94,10 @@ function RenderRows({
 
   function renderTableValue(entry, attr1, attr2, prepend) {
     return (
-      <td onClick={() => handleEdit(entry)}>
+      <td
+        onClick={() => handleEdit(entry)}
+        className={canEdit ? "" : "no-hover"}
+      >
         <p>
           {prepend ? prepend : null}
           {attr2 ? entry[attr1][attr2] : entry[attr1]}
@@ -107,7 +110,15 @@ function RenderRows({
     if (canEdit) {
       return (
         <td>
-          <div className="btn-wrapper">
+          <div
+            className={
+              text === "+"
+                ? "btn-wrapper"
+                : edit === params
+                ? "btn-wrapper column-btn save"
+                : "btn-wrapper column-btn"
+            }
+          >
             <button onClick={() => handleClick(params)}>{text}</button>
           </div>
         </td>
@@ -130,7 +141,7 @@ function RenderRows({
         {renderInput("number", amount, setAmount)}
         {renderInput("text", note, setNote)}
 
-        {renderButton("save", handleSave, entry.id)}
+        {renderButton("=", handleSave, entry.id)}
       </tr>
     ) : (
       // Displayed by default, when NOT being edited
