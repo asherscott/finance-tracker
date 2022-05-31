@@ -115,11 +115,16 @@ function RenderRows({
               text === "+"
                 ? "btn-wrapper"
                 : edit === params
-                ? "btn-wrapper column-btn save"
-                : "btn-wrapper column-btn"
+                ? "btn-wrapper save"
+                : "btn-wrapper"
             }
           >
-            <button onClick={() => handleClick(params)}>{text}</button>
+            <button
+              className={text === "+" ? "" : "column-btn"}
+              onClick={() => handleClick(params)}
+            >
+              {text}
+            </button>
           </div>
         </td>
       );
@@ -129,7 +134,7 @@ function RenderRows({
   const renderEntries = journalEntries.map((entry) =>
     edit === entry.id ? (
       // Displayed when editing a row
-      <tr key={entry.id}>
+      <tr key={entry.id} className="edited">
         {renderDate(entry)}
 
         {chooseCategory
@@ -319,7 +324,7 @@ function RenderRows({
 
   function renderNewRow() {
     return (
-      <tr>
+      <tr className="edited">
         {renderDate()}
 
         {chooseCategory
@@ -331,7 +336,11 @@ function RenderRows({
         {renderInput("number", amount, setAmount)}
         {renderInput("text", note, setNote)}
         <td>
-          <button onClick={() => handleSave(null)}>save</button>
+          <div className="save">
+            <button className="" onClick={() => handleSave(null)}>
+              =
+            </button>
+          </div>
         </td>
       </tr>
     );
