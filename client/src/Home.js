@@ -61,13 +61,13 @@ function Home() {
           </div>
 
           <div>
-            <ul>
+            <ul className="footer-list">
               <li>
                 <a
                   href="https://www.linkedin.com/in/asher-scott-39a740235/"
                   className="icon"
                 >
-                  <i class="fab fa-linkedin-in"></i>
+                  LinkedIn
                 </a>
               </li>
               <li>
@@ -75,7 +75,7 @@ function Home() {
                   href="https://github.com/asherscott/finance-tracker"
                   className="icon"
                 >
-                  <i class="fab fa-github"></i>
+                  Github
                 </a>
               </li>
             </ul>
