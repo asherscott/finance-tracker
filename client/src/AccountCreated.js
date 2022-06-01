@@ -1,6 +1,6 @@
 function AccountCreated({ setSignup }) {
   return (
-    <div className="wrapper login-center">
+    <div id="landing-background" className="wrapper success-wrapper">
       <div className="login-wrapper success-wrapper">
         <h1>Success!</h1>
         <a

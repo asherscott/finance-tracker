@@ -18,6 +18,7 @@
 
 body {
   background-color: var(--three);
+  height: 100%;
 }
 
 #landing-background {
@@ -27,6 +28,7 @@ body {
     rgba(38, 205, 77, 1) -30%,
     rgba(42, 72, 88, 1) 100%
   );
+  min-height: 100vh;
 }
 
 .landing-wrapper {

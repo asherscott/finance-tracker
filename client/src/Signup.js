@@ -34,7 +34,7 @@ function Signup({ onSignup }) {
     <div className="wrapper login-center">
       <div className="login-wrapper">
         <h2>Sign Up!</h2>
-        <form onSubmit={handleSignup} className="login-wrapper">
+        <form onSubmit={handleSignup} className="form-wrapper">
           <div className="login-input-wrapper">
             <label
               htmlFor="email"

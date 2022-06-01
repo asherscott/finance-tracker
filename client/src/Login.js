@@ -29,7 +29,7 @@ function Login({ onLogin }) {
     <div className="wrapper login-center">
       <div className="login-wrapper">
         <h2>Login</h2>
-        <form onSubmit={handleLogin} className="login-wrapper">
+        <form onSubmit={handleLogin} className="form-wrapper">
           <div className="login-input-wrapper">
             <label
               htmlFor="email"
