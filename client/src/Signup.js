@@ -38,7 +38,11 @@ function Signup({ onSignup }) {
             <label
               htmlFor="email"
               className={
-                focus === "email" ? "focused login-label" : "login-label"
+                focus === "email"
+                  ? "focused login-label"
+                  : email
+                  ? "focused login-label"
+                  : "login-label"
               }
             >
               Email
@@ -58,7 +62,11 @@ function Signup({ onSignup }) {
             <label
               htmlFor="password"
               className={
-                focus === "password" ? "focused login-label" : "login-label"
+                focus === "password"
+                  ? "focused login-label"
+                  : password
+                  ? "focused login-label"
+                  : "login-label"
               }
             >
               Password
@@ -79,6 +87,8 @@ function Signup({ onSignup }) {
               htmlFor="passwordConfirmation"
               className={
                 focus === "passwordConfirmation"
+                  ? "focused login-label"
+                  : passwordConfirmation
                   ? "focused login-label"
                   : "login-label"
               }

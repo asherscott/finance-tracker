@@ -34,7 +34,11 @@ function Login({ onLogin }) {
             <label
               htmlFor="email"
               className={
-                focus === "email" ? "focused login-label" : "login-label"
+                focus === "email"
+                  ? "focused login-label"
+                  : email
+                  ? "focused login-label"
+                  : "login-label"
               }
             >
               Email
@@ -54,7 +58,11 @@ function Login({ onLogin }) {
             <label
               htmlFor="password"
               className={
-                focus === "password" ? "focused login-label" : "login-label"
+                focus === "password"
+                  ? "focused login-label"
+                  : password
+                  ? "focused login-label"
+                  : "login-label"
               }
             >
               Password
