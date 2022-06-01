@@ -66,3 +66,17 @@
     opacity: 1;
   }
 }
+.success-wrapper {
+  background-color: rgb(0, 0, 0, 0);
+}
+
+.success-wrapper h1 {
+  font-size: 36pt;
+  margin-top: 10rem;
+}
+
+.success-link {
+  text-align: center;
+  margin: 0;
+  border-radius: 10px;
+}
