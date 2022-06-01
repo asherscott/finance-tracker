@@ -5,6 +5,7 @@ function Signup({ onSignup }) {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [error, setError] = useState("");
+  const [focus, setFocus] = useState(null);
 
   const config = {
     method: "POST",
@@ -29,41 +30,79 @@ function Signup({ onSignup }) {
   }
 
   return (
-    <div>
-      <h2>Signup</h2>
-      <form onSubmit={handleSignup}>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <label htmlFor="passwordConfirmation">Confirm Password</label>
-        <input
-          id="passwordConfirmation"
-          name="passwordConfirmation"
-          type="password"
-          value={passwordConfirmation}
-          onChange={(e) => setPasswordConfirmation(e.target.value)}
-          required
-        />
+    <div className="wrapper login-center">
+      <div className="login-wrapper">
+        <h2>Sign Up!</h2>
+        <form onSubmit={handleSignup} className="login-wrapper">
+          <div className="login-input-wrapper">
+            <label
+              htmlFor="email"
+              className={
+                focus === "email" ? "focused login-label" : "login-label"
+              }
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={email}
+              onFocus={(e) => setFocus(e.target.name)}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-        <input type="submit" value="Signup" />
-      </form>
+          <div className="login-input-wrapper">
+            <label
+              htmlFor="password"
+              className={
+                focus === "password" ? "focused login-label" : "login-label"
+              }
+            >
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              value={password}
+              onFocus={(e) => setFocus(e.target.name)}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-      {error ? <p className="error">{error.error}</p> : null}
+          <div className="login-input-wrapper">
+            <label
+              htmlFor="passwordConfirmation"
+              className={
+                focus === "passwordConfirmation"
+                  ? "focused login-label"
+                  : "login-label"
+              }
+            >
+              Confirm Password
+            </label>
+            <input
+              id="passwordConfirmation"
+              name="passwordConfirmation"
+              type="password"
+              value={passwordConfirmation}
+              onFocus={(e) => setFocus(e.target.name)}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
+              required
+            />
+          </div>
+
+          <button type="submit" className="login-btn">
+            Sign Up!
+          </button>
+        </form>
+
+        {error ? <p className="error">{error.error}</p> : null}
+      </div>
     </div>
   );
 }
