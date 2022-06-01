@@ -78,12 +78,12 @@ function Login({ onLogin }) {
             />
           </div>
 
+          {error ? <p className="error">{error.error}</p> : null}
+
           <button type="submit" className="login-btn">
             Login
           </button>
         </form>
-
-        {error ? <p className="error">{error.error}</p> : null}
       </div>
     </div>
   );

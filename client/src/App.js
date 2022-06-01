@@ -35,32 +35,36 @@ function App() {
   } else {
     return (
       <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/signup">Sign Up!</Link>
-              </li>
-            </ul>
-          </nav>
+        <div id="landing-background">
+          <div className="landing-wrapper">
+            <nav className="landing-nav">
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <div className="right-nav">
+                  <li>
+                    <Link to="/login">Login</Link>
+                  </li>
+                  <li>
+                    <Link to="/signup">Sign Up!</Link>
+                  </li>
+                </div>
+              </ul>
+            </nav>
 
-          <Switch>
-            <Route path="/login">
-              <Login onLogin={onLogin} />
-            </Route>
-            <Route path="/signup">
-              <Signup onSignup={onSignup} />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
+            <Switch>
+              <Route path="/login">
+                <Login onLogin={onLogin} />
+              </Route>
+              <Route path="/signup">
+                <Signup onSignup={onSignup} />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </div>
         </div>
       </Router>
     );

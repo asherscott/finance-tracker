@@ -5,6 +5,7 @@ function Signup({ onSignup }) {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [error, setError] = useState("");
+
   const [focus, setFocus] = useState(null);
 
   const config = {
@@ -106,12 +107,16 @@ function Signup({ onSignup }) {
             />
           </div>
 
+          {error ? (
+            <p className="error">
+              {error.password_confirmation} {error.error}
+            </p>
+          ) : null}
+
           <button type="submit" className="login-btn">
             Sign Up!
           </button>
         </form>
-
-        {error ? <p className="error">{error.error}</p> : null}
       </div>
     </div>
   );

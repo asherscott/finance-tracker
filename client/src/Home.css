@@ -1,0 +1,32 @@
+.dash-img {
+  width: 50vw;
+  min-width: 600px;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
+.home-wrapper {
+  align-items: center;
+}
+
+.text,
+.img-wrapper {
+  width: 80%;
+  min-width: 600px;
+  display: flex;
+}
+
+.text {
+  justify-content: flex-start;
+}
+
+.text p {
+  margin: 5rem 1rem;
+  width: 35vw;
+  min-width: 400px;
+  font-size: 24pt;
+}
+
+.img-wrapper {
+  justify-content: flex-end;
+}

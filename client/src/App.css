@@ -19,3 +19,46 @@
 body {
   background-color: var(--three);
 }
+
+#landing-background {
+  background: rgb(38, 205, 77);
+  background: linear-gradient(
+    270deg,
+    rgba(38, 205, 77, 1) -30%,
+    rgba(42, 72, 88, 1) 100%
+  );
+}
+
+.landing-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-nav {
+  background-color: rgb(0, 0, 0, 0);
+  margin-top: 5vh;
+}
+
+.landing-nav ul {
+  justify-content: space-between;
+}
+
+.landing-nav ul li {
+  margin: 1rem 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.landing-nav ul > li a {
+  font-size: 24pt;
+  font-weight: bold;
+}
+
+.landing-nav ul li a {
+  color: var(--one);
+}
+
+.right-nav {
+  display: flex;
+  justify-content: center;
+}
