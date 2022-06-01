@@ -110,3 +110,8 @@ select:focus,
 input:focus {
   border-color: var(--one);
 }
+
+::placeholder {
+  color: var(--twoo);
+  opacity: 0.5;
+}

@@ -12,7 +12,8 @@ function NetWorth({ user, masterList, setMasterList, setTab }) {
 
   function nwTotal() {
     const amounts = statements.map((entry) => entry.amount);
-    return amounts.slice(-1)[0];
+    const total = amounts.slice(-1)[0];
+    return total ? total.toLocaleString("en-US") : 0;
   }
 
   function renderArea() {

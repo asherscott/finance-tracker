@@ -62,7 +62,10 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
     return (
       <div className="chart-wrapper budget-chart">
         <span className="amount">
-          ${entries.reduce((total, num) => total + num.amount, 0)}
+          $
+          {entries
+            .reduce((total, num) => total + num.amount, 0)
+            .toLocaleString("en-US")}
         </span>
         <Chart
           chartType="PieChart"
@@ -194,7 +197,9 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
             >
               Cash Flow
             </span>
-            {subTab ? null : <span className="num">${cfTotal()}</span>}
+            {subTab ? null : (
+              <span className="num">${cfTotal().toLocaleString("en-US")}</span>
+            )}
           </div>
           <div className="sub-nav">
             <span

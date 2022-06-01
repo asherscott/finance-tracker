@@ -131,3 +131,7 @@
 .amount {
   position: absolute;
 }
+
+.smaller {
+  font-size: 14pt;
+}

@@ -31,12 +31,7 @@
 }
 
 .login-input-wrapper input:focus {
-  /* border: none; */
-  /* outline: auto; */
-  /* outline-color: var(--lightgreen); */
-  /* outline-style: double; */
   transition: 0.3s;
-  /* border-radius: 10px; */
 }
 
 .login-btn {
@@ -47,6 +42,7 @@
   border-radius: 0 0 20px 20px;
   background-color: rgba(10, 29, 41, 0.3);
   transition: 0.2s;
+  color: var(--twoo);
 }
 
 .login-btn:hover {

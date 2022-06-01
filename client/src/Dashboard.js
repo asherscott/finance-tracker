@@ -46,7 +46,10 @@ function Dashboard({ user, masterList, setTab }) {
     return (
       <div className="chart-wrapper">
         <span className="amount">
-          ${budgetEntries.reduce((total, num) => total + num.amount, 0)}
+          $
+          {budgetEntries
+            .reduce((total, num) => total + num.amount, 0)
+            .toLocaleString("en-US")}
         </span>
         <Chart
           chartType="PieChart"
@@ -88,7 +91,8 @@ function Dashboard({ user, masterList, setTab }) {
 
   function nwTotal() {
     const amounts = statements.map((entry) => entry.amount);
-    return amounts.slice(-1)[0];
+    const total = amounts.slice(-1)[0];
+    return total ? total.toLocaleString("en-US") : 0;
   }
 
   function renderNW() {
@@ -141,8 +145,11 @@ function Dashboard({ user, masterList, setTab }) {
 
     return (
       <div className="chart-wrapper">
-        <span className="amount">
-          ${entries.reduce((total, num) => total + num.amount, 0)}
+        <span className="amount smaller">
+          $
+          {entries
+            .reduce((total, num) => total + num.amount, 0)
+            .toLocaleString("en-US")}
         </span>
         <Chart
           chartType="PieChart"
