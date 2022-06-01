@@ -65,7 +65,7 @@ function NetWorth({ user, masterList, setMasterList, setTab }) {
         <div className="dash-tile NW-area">{renderArea()}</div>
 
         <table className="big">
-          <thead>
+          <thead className="head-row">
             <tr>
               <th>Date</th>
               <th>Net Worth</th>

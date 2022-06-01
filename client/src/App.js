@@ -37,7 +37,7 @@ function App() {
       <Router>
         <div id="landing-background">
           <div className="landing-wrapper">
-            <nav className="landing-nav">
+            <nav className="landing-nav" id="home">
               <ul>
                 <li>
                   <Link to="/">Home</Link>

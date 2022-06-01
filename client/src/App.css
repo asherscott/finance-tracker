@@ -14,6 +14,8 @@
 * {
   color: var(--twoo);
   box-sizing: border-box;
+  scroll-behavior: smooth;
+  outline: none;
 }
 
 body {

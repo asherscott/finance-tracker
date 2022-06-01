@@ -226,7 +226,7 @@ function CashFlow({ user, masterList, setMasterList, setTab }) {
 
           <table className="big">
             <thead>
-              <tr>
+              <tr className="head-row">
                 <th>Date</th>
                 <th>Category</th>
                 <th>Amount</th>

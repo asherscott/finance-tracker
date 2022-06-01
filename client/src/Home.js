@@ -1,38 +1,21 @@
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
     <div className="landing-wrapper home-wrapper">
       <div className="text">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          Make tracking your financials easy. Create a budget, add expenses,
+          income, and view your Net Worth and Cash Flow over time. This
+          Application is designed to keep track of your daily spending habits,
+          and visualize your Net Worth over time.
         </p>
       </div>
 
       <div className="img-wrapper">
         <img src="Dashboard.png" alt="Dashboard.png" className="dash-img" />
       </div>
-
-      {/* <div className="fancy">
-        <div className="img-parent">
-          <div className="img-wrapper">
-            <img src="Dashboard.png" alt="Dashboard.png" className="dash-img" />
-          </div>
-        </div>
-        <div className=" text text-parent">
-          <div className="text-skinny">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-        </div>
-      </div> */}
 
       <div className="image-tab-wrapper">
         <div className="img-card">
@@ -62,7 +45,42 @@ function Home() {
       </div>
 
       <footer>
-        <div>hey</div>
+        <div className="footer-wrapper">
+          <div>
+            <ul className="footer-list">
+              <li>
+                <a href="#home">Home</a>
+              </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/signup">Sign Up!</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <ul>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/asher-scott-39a740235/"
+                  className="icon"
+                >
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/asherscott/finance-tracker"
+                  className="icon"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </footer>
     </div>
   );

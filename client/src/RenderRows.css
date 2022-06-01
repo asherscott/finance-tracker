@@ -18,6 +18,7 @@ td:last-child {
 
 .head-row {
   cursor: auto;
+  text-align: center;
 }
 
 tr:hover td {
