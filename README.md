@@ -12,4 +12,4 @@ A personal finance tracker to design a budget and track daily income and expense
 - Postgresql
 - React
 
-## Try it out [here]([https://finance-tracker.herokuapp.com/](https://asher-scott-finance-tracker.herokuapp.com/))
+## Try it out [here](https://asher-scott-finance-tracker.herokuapp.com/)
