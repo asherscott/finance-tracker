@@ -11,3 +11,5 @@ A personal finance tracker to design a budget and track daily income and expense
 - Heroku CLI
 - Postgresql
 - React
+
+## Try it out [here](https://finance-tracker.herokuapp.com/)
